@@ -9,7 +9,98 @@
     </option>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a34d4e0f-8588-439e-978e-8e4495445aba" name="Changes" comment="" />
+    <list default="true" id="a34d4e0f-8588-439e-978e-8e4495445aba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/DOTween.XML" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/DOTween.XML.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/DOTween.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/DOTween.dll.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/DOTweenEditor.XML" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/DOTweenEditor.XML.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/DOTweenEditor.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/DOTweenEditor.dll.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/DOTweenIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/DOTweenIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/DOTweenMiniIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/DOTweenMiniIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/Footer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/Footer.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/Footer_dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/Footer_dark.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/Header.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Editor/Imgs/Header.jpg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTween.Modules.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTween.Modules.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleAudio.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleAudio.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleEPOOutline.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleEPOOutline.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModulePhysics.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModulePhysics.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModulePhysics2D.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModulePhysics2D.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleSprite.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleSprite.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleUI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleUnityVersion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleUnityVersion.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/Modules/DOTweenModuleUtils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DOTween 2/readme.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Modules.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/HandModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/HandModel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileDrag.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileDrag.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Board.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Board.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/EmptyTile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/EmptyTile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/GridPallete.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/GridPallete.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile1024.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile128.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile128.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile128.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile128.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile16.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile2048.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile2048.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile256.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile256.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile32.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile512.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile64.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile64.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Sprites/Tile8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,13 +111,29 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7870a02f0aef48fdaf48ce3f989725dbc400/84/f2ca78d7/UnityWebRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a974fce21a244e34b4d18514b3ab287c4200/89/fdaeb021/GridLayout.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a974fce21a244e34b4d18514b3ab287c4200/cc/fb1c7f90/Grid.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ac8d696afb894d60819238ef536acfb4a200/ad/59f9bd6d/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de80aed0bd3646409e8bfb15c101f005e2000/16/8cee4bc5/Directory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de80aed0bd3646409e8bfb15c101f005e2000/35/084738bd/Path.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/34/53c19fbb/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/80/746a5e1b/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/82/ff5495a5/Vector3Int.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/ba/91520fa8/Gizmos.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/bc/0f3ffb69/Rect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/EnumeratorAsyncExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.analytics@6.0.2/Runtime/AnalyticsService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.analytics@6.0.2/Runtime/IAnalyticsService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/PointerEventData.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2n1GFCELbKFPQhsp2Q3T55nXvIz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -102,6 +209,8 @@
       <option name="presentableId" value="Default" />
       <updated>1728133062620</updated>
       <workItem from="1728133063712" duration="4765000" />
+      <workItem from="1728153425878" duration="169000" />
+      <workItem from="1728153665428" duration="20915000" />
     </task>
     <servers />
   </component>
