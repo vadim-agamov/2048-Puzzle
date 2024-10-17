@@ -1,4 +1,6 @@
+using Core.Controller;
 using Core.Models;
+using Cysharp.Threading.Tasks;
 using Modules.Extensions;
 using Modules.UiComponents;
 using UnityEngine;
@@ -21,65 +23,65 @@ namespace Core.Views
 
         [SerializeField] 
         private TileView _tileViewPrefab;
+        
+        [SerializeField]
+        private EmptyCellView _emptyCellPrefab;
 
         [SerializeField] 
         private HandView _handView;
 
-        private TileView[,] _gridCells;
+        private EmptyCellView[,] _gridCells;
         private TileView[,] _tileCells;
-        private Vector2Int _hoveredGrid = Vector2Int.zero;
+        private Vector2Int _hoveredCell = Vector2Int.zero;
         
         private BoardModel Model { get; set; }
-
-        public void Start()
-        {
-            var model = new BoardModel(new Vector2Int(6, 6))
-            {
-                Tiles =
-                {
-                    [1, 1] = TileType.Tile1,
-                    [4, 4] = TileType.Tile8,
-                    [4, 5] = TileType.Tile64,
-                }
-            };
-            model.Hand.SetTile(0, TileType.Tile1);
-            model.Hand.SetTile(1, TileType.Tile2);
-            model.Hand.SetTile(3, TileType.Tile4);
-
-            SetModel(model);
-        }
-
-        public void SetModel(BoardModel model)
+        private BoardController Controller { get; set; }
+        
+        public void Initialize(BoardController controller, BoardModel model)
         {
             Model = model;
+            Controller = controller;
             CreateGrid();
             CreateCells();
             CreateHand(model);
             FitCamera();
         }
 
-        public void OnTileMoved(Vector3 worldPosition)
+        public void OnTileDrag(TileView tileView)
         {
-            var cell = (Vector2Int)_grid.WorldToCell(worldPosition);
+            var cell = (Vector2Int)_grid.WorldToCell(tileView.transform.position);
             if (cell.x < 0 || cell.x > Model.Size.x - 1 ||
                 cell.y < 0 || cell.y > Model.Size.y - 1)
             {
                 return;
-            }
-
-
-            if (_hoveredGrid != cell) 
+            }   
+            
+            if (_hoveredCell != cell) 
             {
-                Debug.Log($"{_hoveredGrid.x}-{_hoveredGrid.y}");
-                _gridCells[_hoveredGrid.x, _hoveredGrid.y].HoverOut();
-                _hoveredGrid = cell;
-                _gridCells[_hoveredGrid.x, _hoveredGrid.y].HoverIn();
+                // Debug.Log($"{_hoveredGrid.x}-{_hoveredGrid.y}");
+                _gridCells[_hoveredCell.x, _hoveredCell.y].HoverOut();
+                _hoveredCell = cell;
+                _gridCells[_hoveredCell.x, _hoveredCell.y].HoverIn();
             }
         }
+        
 
+        public void OnTileDragEnd(TileView tileView)
+        {
+            var cell = (Vector2Int)_grid.WorldToCell(tileView.transform.position);
+            if (cell.x < 0 || cell.x > Model.Size.x - 1 ||
+                cell.y < 0 || cell.y > Model.Size.y - 1)
+            {
+                tileView.RestorePosition();
+                return;
+            }  
+            
+            Controller.PutTileOnBoard(cell, tileView);
+        }
+        
         private void CreateHand(BoardModel model)
         {
-            _handView.SetModel(model.Hand);
+            _handView.SetModel(model.Hand, this);
             var rect = VisibleGridWorldRect;
             _handView.transform.position = new Vector3(rect.center.x, rect.yMin - _grid.cellSize.y);
             
@@ -87,21 +89,17 @@ namespace Core.Views
             {
                 if(handViewTileView == null)
                     continue;
-                
-                handViewTileView.GetComponent<TileDrag>().OnTileMoved += OnTileMoved;
             }
         }
-
-
+        
         private void CreateGrid()
         {
-            _gridCells = new TileView[Model.Size.x, Model.Size.y];
+            _gridCells = new EmptyCellView[Model.Size.x, Model.Size.y];
             for (var x = 0; x < Model.Size.x; x++)
             {
                 for (var y = 0; y < Model.Size.y; y++)
                 {
-                    var tile = Instantiate(_tileViewPrefab, _gridContainer);
-                    tile.TileType = TileType.None;
+                    var tile = Instantiate(_emptyCellPrefab, _gridContainer);
                     tile.transform.position = _grid.GetCellCenterWorld(new Vector3Int(x, y));
                     _gridCells[x, y] = tile;
                 }
@@ -115,17 +113,29 @@ namespace Core.Views
             {
                 for (var y = 0; y < Model.Size.y; y++)
                 {
-                    if (Model.Tiles[x, y] == TileType.None)
+                    var model = Model.Tiles[x, y];
+                    if (model == null || model.Type == TileType.None)
                     {
                         continue;
                     }
 
-                    var tile = Instantiate(_tileViewPrefab, _cellsContainer);
-                    tile.TileType = Model.Tiles[x, y];
+                    var tile = model.CreateView(_tileViewPrefab, _cellsContainer, this);
                     tile.transform.position = _grid.GetCellCenterWorld(new Vector3Int(x, y));
                     _tileCells[x, y] = tile;
                 }
             }
+        }
+        
+        public UniTask PutTile(Vector2Int position, TileView tileView)
+        {
+            Debug.Assert(_tileCells[position.x, position.y] == null, $"Tile already exists {position}");
+            
+            tileView.transform.position = _grid.GetCellCenterWorld(new Vector3Int(position.x, position.y));
+            tileView.transform.SetParent(_cellsContainer);
+            tileView.IsDraggable = false;
+            _tileCells[position.x, position.y] = tileView;
+            _handView.RemoveTile(tileView);
+            return UniTask.CompletedTask;
         }
 
         private void FitCamera() => _camera.FitOrthographic(VisibleWorldRect, 1);
@@ -145,7 +155,6 @@ namespace Core.Views
             }
         }
         
-
         private void OnDrawGizmos()
         {
             if (Model == null)

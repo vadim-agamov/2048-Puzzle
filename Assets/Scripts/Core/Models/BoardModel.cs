@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Core.Models
 {
-    public class BoardModel
+    public class BoardModel : ComponentModel
     {
         public Vector2Int Size { get; }
         
-        public TileType[,] Tiles { get; }
+        public TileModel[,] Tiles { get; }
         
         public HandModel Hand { get; }
         
         public BoardModel(Vector2Int size)
         {
             Size = size;
-            Tiles = new TileType[size.x, size.y].Fill(TileType.None);
+            Tiles = new TileModel[size.x, size.y];
             Hand = new HandModel(4);
         }
     }

@@ -5,14 +5,14 @@ namespace Core.Models
     public class HandModel
     {
         public int Size { get; }
-        public TileType[] Tiles { get; }
+        public TileModel[] Tiles { get; }
         
         public HandModel(int size)
         {
             Size = size;
-            Tiles = Enumerable.Repeat(TileType.None, size).ToArray(); 
+            Tiles = Enumerable.Repeat(new TileModel(TileType.None), size).ToArray(); 
         }
         
-        public void SetTile(int index, TileType tileType) => Tiles[index] = tileType;
+        public void SetTile(int index, TileModel model) => Tiles[index] = model;
     }
 }

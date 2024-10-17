@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Core.Models;
+using Modules.Extensions;
 using UnityEngine;
 
 namespace Core.Views
@@ -17,6 +19,9 @@ namespace Core.Views
 
         [SerializeField]
         private Transform _tilesContainer;
+        
+        [SerializeField]
+        private EmptyCellView _emptyCellPrefab;
 
         private TileView[] _tileViews;
         private HandModel Model { get; set; }
@@ -36,39 +41,58 @@ namespace Core.Views
             }
         }
 
-        public void SetModel(HandModel model)
+        public void SetModel(HandModel model, BoardView boardView)
         {
             Model = model;
+            CreateCells();
+            CreateTiles(boardView);
+        }
 
-            for (var i = 0; i < Model.Size; i++)
-            {
-                var cell = Instantiate(_tileViewPrefab, _gridContainer);
-                cell.TileType = TileType.None;
-                cell.transform.localPosition = GetCellPosition(i);
-            }
-
+        private void CreateTiles(BoardView boardView)
+        {
             _tileViews = new TileView[Model.Size];
             for (var i = 0; i < Model.Size; i++)
             {
-                if (Model.Tiles[i] == TileType.None)
+                var tileModel = Model.Tiles[i];
+                if (tileModel == null || tileModel.Type == TileType.None)
                 {
                     continue;
                 }
                 
-                var tile = Instantiate(_tileViewPrefab, _tilesContainer);
-                tile.TileType = Model.Tiles[i];
-                tile.transform.localPosition = GetCellPosition(i);
-                _tileViews[i] = tile;
+                CreateTile(boardView, tileModel, i);
             }
         }
 
-        public IEnumerable<TileView> TileViews => _tileViews;
+        private void CreateTile(BoardView boardView, TileModel tileModel, int i)
+        {
+            var tile = tileModel.CreateView(_tileViewPrefab, _tilesContainer, boardView);
+            tile.transform.localPosition = GetCellPosition(i);
+            tile.IsDraggable = true;
+            _tileViews[i] = tile;
+        }
+
+        private void CreateCells()
+        {
+            for (var i = 0; i < Model.Size; i++)
+            {
+                var cell = Instantiate(_emptyCellPrefab, _gridContainer);
+                cell.transform.localPosition = GetCellPosition(i);
+            }
+        }
 
         private Vector3 GetCellPosition(int index)
         {
             var handWidth = (Model.Size - 1) * _grid.cellSize.x;
             var cellPosition = Mathf.Lerp(-handWidth / 2, handWidth / 2, index / (float)(Model.Size - 1));
             return new Vector3(cellPosition, 0, 0);
+        }
+
+        public IEnumerable<TileView> TileViews => _tileViews;
+        
+        public void RemoveTile(TileView tileView)
+        {
+            var index = Array.IndexOf(_tileViews, tileView);
+            _tileViews[index] = null;
         }
     }
 }
