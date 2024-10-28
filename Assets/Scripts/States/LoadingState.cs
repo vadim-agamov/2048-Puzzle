@@ -8,9 +8,11 @@ using Modules.FSM;
 using Modules.LocalizationService;
 using Modules.PlatformService;
 using Modules.ServiceLocator;
+using Modules.ServiceLocator.Initializator;
 using Modules.SoundService;
 using Modules.UIService;
 using Services.GamePlayerDataService;
+using Services.JumpScreenService;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -33,9 +35,8 @@ namespace States
         {
             SetupEventSystem();
 
-            // IJumpScreenService jumpScreenService = GameObject.Find("JumpScreen").GetComponent<JumpScreen>();
-            // await ServiceLocator.Register(jumpScreenService, token);
-            // await jumpScreenService.Show(token);
+            IJumpScreenService jumpScreenService = ServiceLocator.Register(GameObject.Find("JumpScreen").GetComponent<JumpScreen>());
+            await jumpScreenService.Show(token);
             
 #if UNITY_EDITOR
             ServiceLocator.Register<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
@@ -56,29 +57,11 @@ namespace States
             ServiceLocator.Register<IFlyItemsService>(new FlyItemsService());
             ServiceLocator.Register<ISoundService>(new GameObject().AddComponent<SoundService>());
 
-            await ServiceLocator.InitializeAllInitializables(token, new Progress<float>(p => Debug.Log($"[{nameof(LoadingState)}] {p}")));
+            await new Initializator(ServiceLocator.GetInitializables()).Do(token, jumpScreenService);
             
-            
-                // ServiceLocator.Register<IAdsService>(new AdsService(), token, typeof(GamePlayerDataService), typeof(IPlatformService), typeof(IAnalyticsService)),
-                // ServiceLocator.Register<ILocalizationService>(new LocalizationService(), token, typeof(IPlatformService)),
-            
-            // var tasks = new[]
-            // {
-                // ServiceLocator.Register(platformService, token),
-                // ServiceLocator.Register(playerDataService, token,typeof(IPlatformService)),
-                // ServiceLocator.Register<IAnalyticsService>(new AnalyticsService(), token,typeof(IPlatformService)),
-                // ServiceLocator.Register<IUIService>(new UIService(new Vector2(1080, 1920)), token),
-                // ServiceLocator.Register<IFlyItemsService>(new FlyItemsService(), token, typeof(IUIService)),
-                // ServiceLocator.Register<ISoundService>(soundService, token),
-                // ServiceLocator.Register<IInputService>(new InputService(), token),
-                // ServiceLocator.Register<IAdsService>(new AdsService(), token, typeof(GamePlayerDataService), typeof(IPlatformService), typeof(IAnalyticsService)),
-                // ServiceLocator.Register<ILocalizationService>(new LocalizationService(), token, typeof(IPlatformService)),
 #if DEV
                 // RegisterCheats(token)
 #endif
-            // };
-
-            // await tasks.WhenAll(jumpScreenService);
             
             Debug.Log($"[{nameof(LoadingState)}] all services registered");
 
@@ -90,7 +73,7 @@ namespace States
             
             await Fsm.Enter(new CoreState(), token);
             
-            // await jumpScreenService.Hide(token);
+            await jumpScreenService.Hide(token);
             
             // platformService.GameReady();
             // ServiceLocator.Get<IAnalyticsService>().TrackEvent($"Loaded", new Dictionary<string, object>

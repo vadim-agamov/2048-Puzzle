@@ -1,0 +1,20 @@
+{
+    "name": "JumpScreenSerice",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e309f58f5659d0c44af5111820aac19c",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:029c1c1b674aaae47a6841a0b89ad80e",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:268bc11e9333c4cc99e0e67e706b9d8e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
