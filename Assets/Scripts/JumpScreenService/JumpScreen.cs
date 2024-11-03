@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Modules.ServiceLocator;
 using TMPro;
 using UnityEngine;
 
@@ -51,10 +50,6 @@ namespace Services.JumpScreenService
             Debug.Log($"[{nameof(JumpScreen)}] progress: {value}");
             _progressText.gameObject.SetActive(true);
             _progressText.text = $"{(100 * value):0}%";
-        }
-
-        void IService.Dispose()
-        {
         }
     }
 }

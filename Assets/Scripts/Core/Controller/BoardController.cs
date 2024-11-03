@@ -1,19 +1,30 @@
-using System.Collections.Generic;
 using System.Threading;
 using Core.Actions;
 using Core.Models;
 using Core.Views;
 using Cysharp.Threading.Tasks;
+using Modules.AnalyticsService;
+using Modules.Initializator;
 using Modules.ServiceLocator;
+using Services.GamePlayerDataService;
 using UnityEngine;
 
 namespace Core.Controller
 {
-    public class BoardController : IService
+    public class BoardController : IInitializable
     {
         private readonly BoardView _boardView;
         private readonly BoardModel _boardModel;
-        private bool _isReady;
+        
+        private IAnalyticsService AnalyticsService { get; set; }
+        private GamePlayerDataService PlayerDataService { get; set; }
+        
+        [Inject]
+        private void Initialize(IAnalyticsService analyticsService, GamePlayerDataService gamePlayerDataService)
+        {
+            AnalyticsService = analyticsService;
+            PlayerDataService = gamePlayerDataService;
+        }
 
         public BoardController(BoardView boardView)
         {
@@ -32,9 +43,6 @@ namespace Core.Controller
             _boardModel.Hand.SetTile(2, new TileModel(TileType.Tile1));
         }
         
-        void IService.Dispose()
-        {
-        }
 
         public void PutTileOnBoard(Vector2Int cell, TileView tileView)
         {
@@ -53,7 +61,10 @@ namespace Core.Controller
         public async UniTask Initialize(CancellationToken cancellationToken)
         {
             _boardView.Initialize(this, _boardModel);
-            await UniTask.Delay(1000);
+            await UniTask.Delay(1000, cancellationToken: cancellationToken);
+            IsInitialized = true;
         }
+
+        public bool IsInitialized { get; private set; }
     }
 }

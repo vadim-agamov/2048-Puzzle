@@ -1,14 +1,15 @@
-using System;
 using System.Threading;
+using Cheats;
 using Core.State;
 using Cysharp.Threading.Tasks;
 using Modules.AnalyticsService;
+using Modules.CheatService;
 using Modules.FlyItemsService;
 using Modules.FSM;
+using Modules.Initializator;
 using Modules.LocalizationService;
 using Modules.PlatformService;
 using Modules.ServiceLocator;
-using Modules.ServiceLocator.Initializator;
 using Modules.SoundService;
 using Modules.UIService;
 using Services.GamePlayerDataService;
@@ -35,11 +36,11 @@ namespace States
         {
             SetupEventSystem();
 
-            IJumpScreenService jumpScreenService = ServiceLocator.Register(GameObject.Find("JumpScreen").GetComponent<JumpScreen>());
+            IJumpScreenService jumpScreenService = ServiceLocator.Bind(GameObject.Find("JumpScreen").GetComponent<JumpScreen>());
             await jumpScreenService.Show(token);
             
 #if UNITY_EDITOR
-            ServiceLocator.Register<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
+            ServiceLocator.Bind<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
 #elif FB
             IPlatformService platformService = new GameObject("FbBridge").AddComponent<FbPlatformService>();
 #elif YANDEX
@@ -50,18 +51,20 @@ namespace States
             IPlatformService platformService = new GameObject("DummySN").AddComponent<DummyPlatformService>();
 #endif
 
-            ServiceLocator.Register<IUIService>(new UIService(new Vector2(1080, 1920)));
-            ServiceLocator.Register(new GameObject().AddComponent<GamePlayerDataService>());
-            ServiceLocator.Register<ILocalizationService>(new LocalizationService());
-            ServiceLocator.Register<IAnalyticsService>(new AnalyticsService());
-            ServiceLocator.Register<IFlyItemsService>(new FlyItemsService());
-            ServiceLocator.Register<ISoundService>(new GameObject().AddComponent<SoundService>());
-
-            await new Initializator(ServiceLocator.GetInitializables()).Do(token, jumpScreenService);
+            ServiceLocator.Bind<IUIService>(new UIService(new Vector2(1080, 1920)));
+            ServiceLocator.Bind(new GameObject().AddComponent<GamePlayerDataService>());
+            ServiceLocator.Bind<ILocalizationService>(new LocalizationService());
+            ServiceLocator.Bind<IAnalyticsService>(new AnalyticsService());
+            ServiceLocator.Bind<IFlyItemsService>(new FlyItemsService());
+            ServiceLocator.Bind<ISoundService>(new GameObject().AddComponent<SoundService>());
             
 #if DEV
-                // RegisterCheats(token)
+            RegisterCheats();
 #endif
+            
+                        
+            var initializableServices = ServiceLocator.AllServices<IInitializable>();
+            await new Initializator(initializableServices).Do(token, jumpScreenService);
             
             Debug.Log($"[{nameof(LoadingState)}] all services registered");
 
@@ -91,12 +94,12 @@ namespace States
         }
 
 #if DEV
-        private async UniTask RegisterCheats(CancellationToken token)
+        private void RegisterCheats()
         {
             ICheatService cheatService = new GameObject().AddComponent<CheatService>();
-            await ServiceLocator.Register(cheatService, token, typeof(GamePlayerDataService), typeof(ILocalizationService));
-            cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, ServiceLocator.Get<GamePlayerDataService>()));
-            cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
+            ServiceLocator.Bind(cheatService);
+            // cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, ServiceLocator.Get<GamePlayerDataService>()));
+            // cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
             cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService));
         }  
 #endif

@@ -3,6 +3,7 @@ using Core.Controller;
 using Core.Views;
 using Cysharp.Threading.Tasks;
 using Modules.FSM;
+using Modules.Initializator;
 using Modules.ServiceLocator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,12 +16,14 @@ namespace Core.State
         {
             await SceneManager.LoadSceneAsync("Scenes/Core");
             var boardView = Object.FindObjectOfType<BoardView>();
-            await ServiceLocator.Register(new BoardController(boardView)).Initialize(cancellationToken);
+            var controller = ServiceLocator.Bind(new BoardController(boardView));
+            
+            await new Initializator(controller).Do(cancellationToken);
         }
 
         async UniTask IState.Exit(CancellationToken cancellationToken)
         {
-            ServiceLocator.UnRegister<BoardController>();
+            ServiceLocator.UnBind<BoardController>();
         }
     }
 }

@@ -690,7 +690,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    WebGL: UNITASK_DOTWEEN_SUPPORT
+    WebGL: UNITASK_DOTWEEN_SUPPORT;ANALYTICS;DEV;YANDEX
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
