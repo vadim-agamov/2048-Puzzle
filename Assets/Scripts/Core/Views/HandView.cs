@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Core.Models;
 using Modules.Extensions;
 using UnityEngine;
@@ -25,6 +24,7 @@ namespace Core.Views
 
         private TileView[] _tileViews;
         private HandModel Model { get; set; }
+        private BoardView BoardView { get; set; }
 
         public Rect VisibleWorldRect
         {
@@ -41,34 +41,26 @@ namespace Core.Views
             }
         }
 
-        public void SetModel(HandModel model, BoardView boardView)
+        public void Initialize(HandModel model, BoardView boardView)
         {
+            BoardView = boardView;
             Model = model;
             CreateCells();
-            CreateTiles(boardView);
+            CreateTiles();
         }
 
-        private void CreateTiles(BoardView boardView)
+        private void CreateTiles()
         {
             _tileViews = new TileView[Model.Size];
             for (var i = 0; i < Model.Size; i++)
             {
-                var tileModel = Model.Tiles[i];
-                if (tileModel == null || tileModel.Type == TileType.None)
+                if (Model.Tiles[i] == null)
                 {
                     continue;
                 }
                 
-                CreateTile(boardView, tileModel, i);
+                CreateTile(Model.Tiles[i], i);
             }
-        }
-
-        private void CreateTile(BoardView boardView, TileModel tileModel, int i)
-        {
-            var tile = tileModel.CreateView(_tileViewPrefab, _tilesContainer, boardView);
-            tile.transform.localPosition = GetCellPosition(i);
-            tile.IsDraggable = true;
-            _tileViews[i] = tile;
         }
 
         private void CreateCells()
@@ -87,12 +79,20 @@ namespace Core.Views
             return new Vector3(cellPosition, 0, 0);
         }
 
-        public IEnumerable<TileView> TileViews => _tileViews;
+        public TileView[] Tiles => _tileViews;
         
         public void RemoveTile(TileView tileView)
         {
             var index = Array.IndexOf(_tileViews, tileView);
             _tileViews[index] = null;
+        }
+
+        public void CreateTile(TileModel model, int i)
+        {
+            var tile = model.CreateView(_tileViewPrefab, _tilesContainer, BoardView);
+            tile.transform.localPosition = GetCellPosition(i);
+            tile.IsDraggable = true;
+            _tileViews[i] = tile;
         }
     }
 }

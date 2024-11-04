@@ -3,6 +3,7 @@ using Core.Actions;
 using Core.Models;
 using Core.Views;
 using Cysharp.Threading.Tasks;
+using Modules.Actions;
 using Modules.AnalyticsService;
 using Modules.Initializator;
 using Modules.ServiceLocator;
@@ -15,10 +16,10 @@ namespace Core.Controller
     {
         private readonly BoardView _boardView;
         private readonly BoardModel _boardModel;
-        
+
         private IAnalyticsService AnalyticsService { get; set; }
         private GamePlayerDataService PlayerDataService { get; set; }
-        
+
         [Inject]
         private void Initialize(IAnalyticsService analyticsService, GamePlayerDataService gamePlayerDataService)
         {
@@ -29,20 +30,13 @@ namespace Core.Controller
         public BoardController(BoardView boardView)
         {
             _boardView = boardView;
-            _boardModel = new BoardModel(new Vector2Int(6, 6))
-            {
-                Tiles =
-                {
-                    [1, 1] = new TileModel(TileType.Tile1),
-                    [4, 4] = new TileModel(TileType.Tile2),
-                    [4, 5] = new TileModel(TileType.Tile64)
-                }
-            };
-            _boardModel.Hand.SetTile(0, new TileModel(TileType.Tile1));
-            _boardModel.Hand.SetTile(1, new TileModel(TileType.Tile1));
-            _boardModel.Hand.SetTile(2, new TileModel(TileType.Tile1));
+            _boardModel = new BoardModel(new Vector2Int(6, 6));
+            _boardModel.Hand.SetTile(0, new TileModel(TileType.Tile1, 0));
+            _boardModel.Hand.SetTile(1, new TileModel(TileType.Tile1, 1));
+            _boardModel.Hand.SetTile(2, new TileModel(TileType.Tile1, 2));
+            _boardModel.Hand.SetTile(3, new TileModel(TileType.Tile1, 3));
         }
-        
+
 
         public void PutTileOnBoard(Vector2Int cell, TileView tileView)
         {
@@ -51,7 +45,14 @@ namespace Core.Controller
             async UniTask Do()
             {
                 var success = await new PutBlockOnBoardAction(_boardModel, _boardView, cell, tileView).Do();
-                if(!success)
+                if (success)
+                {
+                    await new ParallelAction()
+                        .Add(new TryRefillHandAction(_boardModel, _boardView))
+                        .Add(new TryMergeTilesAction(_boardModel, _boardView))
+                        .Do();
+                }
+                else
                 {
                     tileView.RestorePosition();
                 }

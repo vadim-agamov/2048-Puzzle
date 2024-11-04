@@ -53,13 +53,13 @@ namespace States
 
             ServiceLocator.Bind<IUIService>(new UIService(new Vector2(1080, 1920)));
             ServiceLocator.Bind(new GameObject().AddComponent<GamePlayerDataService>());
-            ServiceLocator.Bind<ILocalizationService>(new LocalizationService());
+            var localizationService = ServiceLocator.Bind<ILocalizationService>(new LocalizationService());
             ServiceLocator.Bind<IAnalyticsService>(new AnalyticsService());
             ServiceLocator.Bind<IFlyItemsService>(new FlyItemsService());
             ServiceLocator.Bind<ISoundService>(new GameObject().AddComponent<SoundService>());
             
 #if DEV
-            RegisterCheats();
+            RegisterCheats(localizationService);
 #endif
             
                         
@@ -94,13 +94,13 @@ namespace States
         }
 
 #if DEV
-        private void RegisterCheats()
+        private void RegisterCheats(ILocalizationService localizationService)
         {
             ICheatService cheatService = new GameObject().AddComponent<CheatService>();
             ServiceLocator.Bind(cheatService);
             // cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, ServiceLocator.Get<GamePlayerDataService>()));
-            // cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
-            cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService));
+            cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
+            cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService, localizationService));
         }  
 #endif
         

@@ -13,7 +13,7 @@ namespace Core.Actions
             LogicAction = new PutBlockOnBoardLogicAction(model, position, tileView.Model);
             if (view != null)
             {
-                VisualAction = new PutBlockOnBoardVisualAction(view, position, tileView);
+                VisualAction = new PutBlockOnBoardVisualAction(model, view, position, tileView);
             }
         }
 
@@ -23,11 +23,11 @@ namespace Core.Actions
             private readonly BoardModel _model;
             private readonly TileModel _tileModel;
 
-            public PutBlockOnBoardLogicAction(BoardModel model, Vector2Int position, TileModel tileType)
+            public PutBlockOnBoardLogicAction(BoardModel model, Vector2Int position, TileModel tile)
             {
                 _model = model;
                 _position = position;
-                _tileModel = tileType;
+                _tileModel = tile;
             }
 
             public override bool Do()
@@ -45,7 +45,8 @@ namespace Core.Actions
                     return false;
                 }
 
-                _model.Tiles[_position.x, _position.y] = _tileModel;
+                _model.Tiles[_position.x, _position.y] = _tileModel.With(_position);
+                _model.Hand.RemoveTile(_tileModel.HandPosition);
                 return true;
             }
         }
@@ -55,17 +56,20 @@ namespace Core.Actions
             private readonly BoardView _boardView;
             private readonly Vector2Int _position;
             private readonly TileView _tileView;
+            private readonly BoardModel _boardModel;
 
-            public PutBlockOnBoardVisualAction(BoardView boardView, Vector2Int position, TileView tileView)
+            public PutBlockOnBoardVisualAction(BoardModel model, BoardView boardView, Vector2Int position, TileView tileView)
             {
                 _boardView = boardView;
                 _position = position;
                 _tileView = tileView;
+                _boardModel = model;
             }
 
             public override UniTask Do()
             {
-                return _boardView.PutTile(_position, _tileView);
+                _tileView.UpdateModel(_boardModel.Tiles[_position.x, _position.y]);
+                return _boardView.PutTileFromHand(_position, _tileView);
             }
         }
     }

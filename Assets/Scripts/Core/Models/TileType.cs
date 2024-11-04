@@ -1,3 +1,5 @@
+using System;
+
 namespace Core.Models
 {
     public enum TileType
@@ -14,5 +16,11 @@ namespace Core.Models
         Tile256,
         Tile512,
         Tile1024,
+        MaxTile = Tile1024
+    }
+    
+    public static class TileTypeExtensions
+    {
+        public static TileType Next(this TileType type) => (TileType)Math.Min((int)type+1, (int)TileType.MaxTile);
     }
 }

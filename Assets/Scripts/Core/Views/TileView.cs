@@ -80,5 +80,10 @@ namespace Core.Views
             Debug.Log("OnEndDrag");
             _boardView.OnTileDragEnd(this);
         }
+        
+        public void Destroy()
+        {
+            Destroy(gameObject);
+        }
     }
 }

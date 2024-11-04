@@ -12,10 +12,12 @@ namespace Cheats
         private readonly CheatButton _langEnglish;
         private readonly CheatButton _langTurkish;
         private readonly CheatLabel _currentLang;
-        private ILocalizationService LocalizationService { get; } = ServiceLocator.Resolve<ILocalizationService>();
-
-        public LocalizationCheatsProvider(ICheatService cheatService)
+        private ILocalizationService LocalizationService { get; }
+        
+        public LocalizationCheatsProvider(ICheatService cheatService, ILocalizationService localizationService)
         {
+            LocalizationService = localizationService;
+            
             _langRussian = new CheatButton(cheatService, Language.Russian.ToString(),
                 () => LocalizationService.SetLanguage(Language.Russian),
                 false);

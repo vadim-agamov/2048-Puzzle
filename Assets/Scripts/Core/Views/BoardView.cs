@@ -36,6 +36,8 @@ namespace Core.Views
         
         private BoardModel Model { get; set; }
         private BoardController Controller { get; set; }
+        public TileView[,] TileCells => _tileCells;
+        public HandView HandView => _handView;
         
         public void Initialize(BoardController controller, BoardModel model)
         {
@@ -81,11 +83,11 @@ namespace Core.Views
         
         private void CreateHand(BoardModel model)
         {
-            _handView.SetModel(model.Hand, this);
+            _handView.Initialize(model.Hand, this);
             var rect = VisibleGridWorldRect;
             _handView.transform.position = new Vector3(rect.center.x, rect.yMin - _grid.cellSize.y);
             
-            foreach (var handViewTileView in _handView.TileViews)
+            foreach (var handViewTileView in _handView.Tiles)
             {
                 if(handViewTileView == null)
                     continue;
@@ -118,15 +120,27 @@ namespace Core.Views
                     {
                         continue;
                     }
-
-                    var tile = model.CreateView(_tileViewPrefab, _cellsContainer, this);
-                    tile.transform.position = _grid.GetCellCenterWorld(new Vector3Int(x, y));
-                    _tileCells[x, y] = tile;
+                    
+                    CreateTile(model);
                 }
             }
         }
         
-        public UniTask PutTile(Vector2Int position, TileView tileView)
+        public void CreateTile(TileModel model)
+        {
+            var tile = model.CreateView(_tileViewPrefab, _cellsContainer, this);
+            tile.transform.position = _grid.GetCellCenterWorld(new Vector3Int(model.BoardPosition.x, model.BoardPosition.y));
+            _tileCells[model.BoardPosition.x, model.BoardPosition.y] = tile;
+        }
+        
+        public void RemoveTile(TileModel model)
+        {
+            var tileView = _tileCells[model.BoardPosition.x, model.BoardPosition.y];
+            _tileCells[model.BoardPosition.x, model.BoardPosition.y] = null;
+            Destroy(tileView.gameObject); 
+        }
+        
+        public UniTask PutTileFromHand(Vector2Int position, TileView tileView)
         {
             Debug.Assert(_tileCells[position.x, position.y] == null, $"Tile already exists {position}");
             
