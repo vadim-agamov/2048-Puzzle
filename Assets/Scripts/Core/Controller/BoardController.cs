@@ -30,26 +30,26 @@ namespace Core.Controller
         public BoardController(BoardView boardView)
         {
             _boardView = boardView;
-            _boardModel = new BoardModel(new Vector2Int(6, 6));
+            _boardModel = new BoardModel(new Vector2Int(4, 5));
             _boardModel.Hand.SetTile(0, new TileModel(TileType.Tile1, 0));
-            _boardModel.Hand.SetTile(1, new TileModel(TileType.Tile1, 1));
+            _boardModel.Hand.SetTile(1, new TileModel(TileType.Tile2, 1));
             _boardModel.Hand.SetTile(2, new TileModel(TileType.Tile1, 2));
-            _boardModel.Hand.SetTile(3, new TileModel(TileType.Tile1, 3));
         }
 
 
-        public void PutTileOnBoard(Vector2Int cell, TileView tileView)
+        public void PutTileOnBoard(Vector2Int position, TileView tileView)
         {
             Do().Forget();
 
             async UniTask Do()
             {
-                var success = await new PutBlockOnBoardAction(_boardModel, _boardView, cell, tileView).Do();
+                var success = await new PutBlockOnBoardAction(_boardModel, _boardView, position, tileView).Do();
                 if (success)
                 {
                     await new ParallelAction()
                         .Add(new TryRefillHandAction(_boardModel, _boardView))
-                        .Add(new TryMergeTilesAction(_boardModel, _boardView))
+                        // .Add(new TryMergeTileAction(_boardModel, _boardView, position))
+                        .Add(new TryBestMergeTileAction(_boardModel, _boardView, tileView.Model))
                         .Do();
                 }
                 else

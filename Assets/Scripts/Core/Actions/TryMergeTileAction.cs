@@ -6,95 +6,74 @@ using Vector2Int = UnityEngine.Vector2Int;
 
 namespace Core.Actions
 {
-    public class TryMergeTileAction : ActionBase
+    public class TryMergeTileAction : IAction
     {
+        private BoardModel Model { get; }
+        private Vector2Int Position { get; }
+        private BoardView View { get; }
+
         public TryMergeTileAction(BoardModel model, BoardView view, Vector2Int position)
         {
-            var context = new Context();
-            LogicAction = new Logic(model, position, context);
-            if (view != null)
-            {
-                VisualAction = new Visual(view, context);
-            }
-        }
-        
-        private class Context
-        {
-            public TileModel TileToRemoveA;
-            public TileModel TileToRemoveB;
-            public TileModel TileToAdd;
+            Model = model;
+            Position = position;
+            View = view;
         }
 
-        private class Logic : LogicActionBase
+        public async UniTask<bool> Do()
         {
-            private BoardModel Model { get; }
-            private Vector2Int Position { get; }
-            private Context Context { get; }
-
-            public Logic(BoardModel model, Vector2Int position, Context context)
+            var success = TryMergeLogical(Position, out var other);
+            if (success)
             {
-                Model = model;
-                Position = position;
-                Context = context;
+                await MergeVisual(other);
+                success |= await new TryMergeTileAction(Model, View, other).Do();
             }
 
-            public override bool Do()
+            return success;
+        }
+
+        private async UniTask MergeVisual(Vector2Int other)
+        {
+            var tileViewA = View.TileCells[Position.x, Position.y];
+            var tileViewB = View.TileCells[other.x, other.y];
+
+            await tileViewA.MoveTo(tileViewB.transform.position);
+
+            View.RemoveTile(Position);
+            View.RemoveTile(other);
+            View.CreateTile(Model.Tiles[other.x, other.y]);
+        }
+
+        private bool TryMergeLogical(Vector2Int position, out Vector2Int other)
+        {
+            return TryMergeWith(position + Vector2Int.right, out other) ||
+                   TryMergeWith(position + Vector2Int.left, out other) ||
+                   TryMergeWith(position + Vector2Int.up, out other) ||
+                   TryMergeWith(position + Vector2Int.down, out other);
+
+            bool TryMergeWith(Vector2Int other, out Vector2Int result)
             {
-                return TryMergeWith(Position + Vector2Int.right) ||
-                       TryMergeWith(Position + Vector2Int.left) ||
-                       TryMergeWith(Position + Vector2Int.up) ||
-                       TryMergeWith(Position + Vector2Int.down);
-
-
-                bool TryMergeWith(Vector2Int other)
+                result = other;
+                if (other.x < 0 || other.x > Model.Size.x - 1 || other.y < 0 || other.y > Model.Size.y - 1)
                 {
-                    if (other.x < 0 || other.x > Model.Size.x - 1 || other.y < 0 || other.y > Model.Size.y - 1)
-                    {
-                        return false;
-                    }
-
-                    var otherModel = Model.Tiles[other.x, other.y];
-                    if (otherModel == null)
-                    {
-                        return false;
-                    }
-                    
-                    var tileModel = Model.Tiles[Position.x, Position.y];
-                    if (otherModel.Type != tileModel.Type)
-                    {
-                        return false;
-                    }
-                    
-                    Context.TileToRemoveA = tileModel;
-                    Model.Tiles[Position.x, Position.y] = null;
-
-                    Context.TileToRemoveB = otherModel;
-                    Context.TileToAdd = new TileModel(tileModel.Type.Next(), other);
-                    Model.Tiles[other.x, other.y] = Context.TileToAdd;
-                    
-                    return true;
+                    return false;
                 }
-            }
-        }
 
-        private class Visual : VisualActionBase
-        {
-            private BoardView BoardView { get; }
-            private Context Context { get; }
-            
-            public Visual(BoardView view, Context context)
-            {
-                BoardView = view;
-                Context = context;
-            }
+                var otherModel = Model.Tiles[other.x, other.y];
+                if (otherModel == null)
+                {
+                    return false;
+                }
 
-            public override UniTask Do()
-            {
-                BoardView.RemoveTile(Context.TileToRemoveA);
-                BoardView.RemoveTile(Context.TileToRemoveB);
-                
-                BoardView.CreateTile(Context.TileToAdd);
-                return UniTask.CompletedTask;
+                var tileModel = Model.Tiles[Position.x, Position.y];
+                if (otherModel.Type != tileModel.Type)
+                {
+                    return false;
+                }
+
+                Model.Tiles[Position.x, Position.y] = null;
+                Model.Tiles[other.x, other.y] = new TileModel(tileModel.Type.Next(), other);
+
+                return true;
             }
         }
     }

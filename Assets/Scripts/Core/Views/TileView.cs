@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using Core.Models;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Modules.Extensions;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -43,7 +45,7 @@ namespace Core.Views
         
         public void RestorePosition()
         {
-            transform.position = _positionBeforeDrag;
+            transform.DOMove(_positionBeforeDrag, 0.3f).SetEase(Ease.OutCubic);
             _positionBeforeDrag = Vector3.zero;
         }
         
@@ -77,13 +79,12 @@ namespace Core.Views
                 return;
             }
             
-            Debug.Log("OnEndDrag");
             _boardView.OnTileDragEnd(this);
         }
         
-        public void Destroy()
+        public async UniTask MoveTo(Vector3 position)
         {
-            Destroy(gameObject);
+            await transform.DOMove(position, 0.3f).SetEase(Ease.OutCubic);
         }
     }
 }

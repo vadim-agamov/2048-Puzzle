@@ -78,6 +78,7 @@ namespace Core.Views
                 return;
             }  
             
+            _gridCells[_hoveredCell.x, _hoveredCell.y].HoverOut();
             Controller.PutTileOnBoard(cell, tileView);
         }
         
@@ -133,10 +134,10 @@ namespace Core.Views
             _tileCells[model.BoardPosition.x, model.BoardPosition.y] = tile;
         }
         
-        public void RemoveTile(TileModel model)
+        public void RemoveTile(Vector2Int position)
         {
-            var tileView = _tileCells[model.BoardPosition.x, model.BoardPosition.y];
-            _tileCells[model.BoardPosition.x, model.BoardPosition.y] = null;
+            var tileView = _tileCells[position.x, position.y];
+            _tileCells[position.x, position.y] = null;
             Destroy(tileView.gameObject); 
         }
         

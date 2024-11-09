@@ -15,7 +15,7 @@ namespace Core.Models
         {
             Size = size;
             Tiles = new TileModel[size.x, size.y];
-            Hand = new HandModel(4);
+            Hand = new HandModel(3);
         }
     }
 }

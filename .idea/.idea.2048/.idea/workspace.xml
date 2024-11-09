@@ -10,24 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a34d4e0f-8588-439e-978e-8e4495445aba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTilesAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTilesAction.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cheats/LocalizationCheatsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cheats/LocalizationCheatsProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Cell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Cell.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/PutBlockOnBoardAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/PutBlockOnBoardAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTilesAction.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTilesAction.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/HandModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/HandModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/LoadingState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/LoadingState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +54,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/4e/1bc27086/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/80/746a5e1b/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/82/ff5495a5/Vector3Int.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/b0/3f6f99be/BeforeRenderHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/ba/91520fa8/Gizmos.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/bc/0f3ffb69/Rect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
@@ -69,7 +68,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Modules/LocalizationService/LocalizationService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/ServiceLocator/InjectAttribute.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/ServiceLocator/ServiceLocator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/GamePlayerDataService.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/States/LoadingState.cs" root0="FORCE_HIGHLIGHTING" />
@@ -152,10 +151,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="63379">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17316">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="63379" />
+      <option name="pid" value="17316" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -182,7 +181,9 @@
       <workItem from="1730045263459" duration="8876000" />
       <workItem from="1730188430687" duration="1116000" />
       <workItem from="1730317901367" duration="10000" />
-      <workItem from="1730573561625" duration="19483000" />
+      <workItem from="1730573561625" duration="23904000" />
+      <workItem from="1730746868508" duration="8250000" />
+      <workItem from="1731161338771" duration="11310000" />
     </task>
     <servers />
   </component>
@@ -203,56 +204,56 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Modules/FlyItemsService/FlyItemsService.cs</url>
-          <line>46</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Modules/FlyItemsService/FlyItemsService.cs" containingFunctionPresentation="Method 'Initialize'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs</url>
+          <line>68</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" containingFunctionPresentation="Method 'Do'">
             <startOffsets>
-              <option value="1431" />
+              <option value="2256" />
             </startOffsets>
             <endOffsets>
-              <option value="1458" />
+              <option value="2377" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs</url>
-          <line>91</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" containingFunctionPresentation="Method 'Do'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs" containingFunctionPresentation="Method 'Find'">
             <startOffsets>
-              <option value="2980" />
+              <option value="871" />
             </startOffsets>
             <endOffsets>
-              <option value="2981" />
+              <option value="912" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs</url>
-          <line>74</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" containingFunctionPresentation="Local function 'TryMergeWith'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs</url>
+          <line>60</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs" containingFunctionPresentation="Local function 'StoreLongestChain'">
             <startOffsets>
-              <option value="2549" />
+              <option value="1906" />
             </startOffsets>
             <endOffsets>
-              <option value="2561" />
+              <option value="1941" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs</url>
-          <line>139</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" containingFunctionPresentation="Method 'RemoveTile'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/PutBlockOnBoardAction.cs</url>
+          <line>33</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/PutBlockOnBoardAction.cs" containingFunctionPresentation="Method 'Do'">
             <startOffsets>
-              <option value="4526" />
+              <option value="1085" />
             </startOffsets>
             <endOffsets>
-              <option value="4555" />
+              <option value="1086" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="17" />
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

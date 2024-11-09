@@ -21,6 +21,7 @@ namespace Core.Models
             HandPosition = hadPosition;
         }
         
-        public TileModel With(Vector2Int boardPosition) => new (Type, boardPosition);
+        public TileModel WithPosition(Vector2Int boardPosition) => new (Type, boardPosition);
+        public TileModel WithType(TileType type) => new (Type, BoardPosition);
     }
 }

@@ -45,7 +45,7 @@ namespace Core.Actions
                     return false;
                 }
 
-                _model.Tiles[_position.x, _position.y] = _tileModel.With(_position);
+                _model.Tiles[_position.x, _position.y] = _tileModel.WithPosition(_position);
                 _model.Hand.RemoveTile(_tileModel.HandPosition);
                 return true;
             }
