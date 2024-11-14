@@ -1,8 +1,10 @@
+using Core.Configs;
 using Core.Controller;
 using Core.Models;
 using Cysharp.Threading.Tasks;
 using Modules.Extensions;
 using Modules.UiComponents;
+using Modules.Utils;
 using UnityEngine;
 
 namespace Core.Views
@@ -20,27 +22,30 @@ namespace Core.Views
         
         [SerializeField] 
         private Transform _cellsContainer;
-
-        [SerializeField] 
-        private TileView _tileViewPrefab;
         
         [SerializeField]
         private EmptyCellView _emptyCellPrefab;
 
         [SerializeField] 
         private HandView _handView;
-
+        
+        [SerializeField]
+        private TilesConfig _tilesConfig;
+        
         private EmptyCellView[,] _gridCells;
         private TileView[,] _tileCells;
         private Vector2Int _hoveredCell = Vector2Int.zero;
+        private GameObjectsPool _tilePool;
         
         private BoardModel Model { get; set; }
         private BoardController Controller { get; set; }
         public TileView[,] TileCells => _tileCells;
         public HandView HandView => _handView;
+        public GameObjectsPool TilePool => _tilePool;
         
         public void Initialize(BoardController controller, BoardModel model)
         {
+            _tilePool = new GameObjectsPool(new GameObject("[POOL]").transform);
             Model = model;
             Controller = controller;
             CreateGrid();
@@ -53,14 +58,14 @@ namespace Core.Views
         {
             var cell = (Vector2Int)_grid.WorldToCell(tileView.transform.position);
             if (cell.x < 0 || cell.x > Model.Size.x - 1 ||
-                cell.y < 0 || cell.y > Model.Size.y - 1)
+                cell.y < 0 || cell.y > Model.Size.y - 1 ||
+                _tileCells[cell.x, cell.y] != null)
             {
                 return;
             }   
             
             if (_hoveredCell != cell) 
             {
-                // Debug.Log($"{_hoveredGrid.x}-{_hoveredGrid.y}");
                 _gridCells[_hoveredCell.x, _hoveredCell.y].HoverOut();
                 _hoveredCell = cell;
                 _gridCells[_hoveredCell.x, _hoveredCell.y].HoverIn();
@@ -74,7 +79,7 @@ namespace Core.Views
             if (cell.x < 0 || cell.x > Model.Size.x - 1 ||
                 cell.y < 0 || cell.y > Model.Size.y - 1)
             {
-                tileView.RestorePosition();
+                tileView.RestoreHandPosition();
                 return;
             }  
             
@@ -127,21 +132,25 @@ namespace Core.Views
             }
         }
         
-        public void CreateTile(TileModel model)
+        public TileView CreateTile(TileModel model)
         {
-            var tile = model.CreateView(_tileViewPrefab, _cellsContainer, this);
+            var tile = model.CreateView(_tilePool.Get, _tilesConfig.GetPrefab(model.Type), _cellsContainer, this);
             tile.transform.position = _grid.GetCellCenterWorld(new Vector3Int(model.BoardPosition.x, model.BoardPosition.y));
             _tileCells[model.BoardPosition.x, model.BoardPosition.y] = tile;
+            return tile;
         }
         
-        public void RemoveTile(Vector2Int position)
+        public void ReleaseTile(TileView tileView) => _tilePool.Release(tileView);
+
+        public TileView RemoveTile(Vector2Int position)
         {
             var tileView = _tileCells[position.x, position.y];
             _tileCells[position.x, position.y] = null;
-            Destroy(tileView.gameObject); 
+            // _tilePool.Release(tileView);
+            return tileView;
         }
         
-        public UniTask PutTileFromHand(Vector2Int position, TileView tileView)
+        public async UniTask PutTileFromHand(Vector2Int position, TileView tileView)
         {
             Debug.Assert(_tileCells[position.x, position.y] == null, $"Tile already exists {position}");
             
@@ -150,7 +159,8 @@ namespace Core.Views
             tileView.IsDraggable = false;
             _tileCells[position.x, position.y] = tileView;
             _handView.RemoveTile(tileView);
-            return UniTask.CompletedTask;
+
+            await tileView.PlaceOnBoard();
         }
 
         private void FitCamera() => _camera.FitOrthographic(VisibleWorldRect, 1);

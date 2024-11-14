@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grid: {fileID: 8587219390829306959}
-  _tileViewPrefab: {fileID: 5912711973199980549, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
   _gridContainer: {fileID: 8535115105345248602}
   _tilesContainer: {fileID: 6581560756721602596}
   _emptyCellPrefab: {fileID: 7123892591967390845, guid: 000d34f371afc432787493883e26417b, type: 3}
+  _tilesConfig: {fileID: 11400000, guid: f6d804db1e73a40118e90aa0efe9862f, type: 2}
 --- !u!1 &1370950349090167199
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +356,6 @@ MonoBehaviour:
   _grid: {fileID: 8587219390829306959}
   _gridContainer: {fileID: 3855677736198763300}
   _cellsContainer: {fileID: 2400678428414571065}
-  _tileViewPrefab: {fileID: 5912711973199980549, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
   _emptyCellPrefab: {fileID: 7123892591967390845, guid: 000d34f371afc432787493883e26417b, type: 3}
   _handView: {fileID: 8818586762311145445}
+  _tilesConfig: {fileID: 11400000, guid: f6d804db1e73a40118e90aa0efe9862f, type: 2}

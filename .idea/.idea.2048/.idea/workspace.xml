@@ -10,22 +10,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a34d4e0f-8588-439e-978e-8e4495445aba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Configs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Configs/TilesConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Configs/TilesConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileOrderSorter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileOrderSorter.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Cell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Cell.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/PutBlockOnBoardAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/PutBlockOnBoardAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTilesAction.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTilesAction.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/BoardView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/BoardView.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Cell.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/Cell.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellAnimator.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellAnimator.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellHoverIn.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellHoverIn.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellHoverOut.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellHoverOut.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellHovered.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellHovered.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellView.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CoreAssets/Prefabs/CellView.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Modules" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs~" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/State/CoreState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/State/CoreState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,10 +65,15 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c816f303bdad4e9a8d8dabcc4fd172eb469200/d1/1e3ba7a1/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c816f303bdad4e9a8d8dabcc4fd172eb469200/e3/9980162c/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c816f303bdad4e9a8d8dabcc4fd172eb469200/f6/1a464930/PropertyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d7cd00767a1c464dba7a010204767eea27800/98/9b6b13a9/AnimatorStateInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d7cd00767a1c464dba7a010204767eea27800/a9/e1afff55/Animator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de1f8ef4975b4eacbeb0accc1b22c9b02a000/1e/b81548c0/TweenExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de80aed0bd3646409e8bfb15c101f005e2000/16/8cee4bc5/Directory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de80aed0bd3646409e8bfb15c101f005e2000/35/084738bd/Path.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/2b/5024047d/SerializeField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/34/53c19fbb/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/4e/1bc27086/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/6a/7a1bf8bc/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/80/746a5e1b/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/82/ff5495a5/Vector3Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ebb6124cf4f74334bb669c2d642dfaa2175200/b0/3f6f99be/BeforeRenderHelper.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,7 +90,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Modules/LocalizationService/LocalizationService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/ServiceLocator/InjectAttribute.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/ServiceLocator/ServiceLocator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs~" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/GamePlayerDataService.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/States/LoadingState.cs" root0="FORCE_HIGHLIGHTING" />
@@ -76,6 +98,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/EnumerableAsyncExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/EnumeratorAsyncExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/External/DOTween/DOTweenAsyncExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/UniTaskExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/UniTaskScheduler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/UnityAsyncExtensions.AsyncGPUReadback.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@d057074f17/Runtime/UnityAsyncExtensions.Jobs.cs" root0="SKIP_HIGHLIGHTING" />
@@ -151,10 +174,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17316">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="17316" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -183,7 +206,9 @@
       <workItem from="1730317901367" duration="10000" />
       <workItem from="1730573561625" duration="23904000" />
       <workItem from="1730746868508" duration="8250000" />
-      <workItem from="1731161338771" duration="11310000" />
+      <workItem from="1731161338771" duration="18931000" />
+      <workItem from="1731263215532" duration="3529000" />
+      <workItem from="1731526899644" duration="15596000" />
     </task>
     <servers />
   </component>
@@ -203,19 +228,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs</url>
-          <line>68</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" containingFunctionPresentation="Method 'Do'">
-            <startOffsets>
-              <option value="2256" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2377" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/BestMergeTileFinder.cs</url>
           <line>31</line>

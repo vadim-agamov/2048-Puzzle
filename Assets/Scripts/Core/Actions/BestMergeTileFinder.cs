@@ -86,6 +86,26 @@ namespace Core.Actions
             {
                 yield return model;
             }
+            
+            if (IsValid(tile.BoardPosition + new Vector2Int(1,1), out model))
+            {
+                yield return model;
+            }
+            
+            if (IsValid(tile.BoardPosition + new Vector2Int(1,-1), out model))
+            {
+                yield return model;
+            }
+            
+            if (IsValid(tile.BoardPosition + new Vector2Int(-1,1), out model))
+            {
+                yield return model;
+            }
+            
+            if (IsValid(tile.BoardPosition + new Vector2Int(-1,-1), out model))
+            {
+                yield return model;
+            }
 
 
             bool IsValid(Vector2Int position, out TileModel m)

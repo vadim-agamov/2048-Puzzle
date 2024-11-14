@@ -21,9 +21,10 @@ namespace Core.State
             await new Initializator(controller).Do(cancellationToken);
         }
 
-        async UniTask IState.Exit(CancellationToken cancellationToken)
+        UniTask IState.Exit(CancellationToken cancellationToken)
         {
             ServiceLocator.UnBind<BoardController>();
+            return UniTask.CompletedTask;
         }
     }
 }

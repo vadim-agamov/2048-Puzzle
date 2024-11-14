@@ -1,26 +1,17 @@
 using System;
-using System.Linq;
 using Core.Models;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Game.Core.Board.Views;
 using Modules.Extensions;
+using Modules.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Core.Views
 {
-    public class TileView : ComponentWithModel<TileModel>, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class TileView : ComponentWithModel<TileModel>, IBeginDragHandler, IDragHandler, IEndDragHandler, IPooledGameObject
     {
-        [Serializable]
-        private class TileSprite
-        {
-            public TileType Type;
-            public Sprite Sprite;
-        }
-        
-        [SerializeField]
-        private TileSprite[] _tileSprites;
-        
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
         
@@ -28,28 +19,40 @@ namespace Core.Views
         private Animator _animator;
         
         [SerializeField]
-        private Collider2D _collider;
+        private AnimatorWaiter _animatorWaiter;
+        
+        
+        [SerializeField]
+        private TileType _type;
+        
+        [SerializeField]
+        private TileOrderSorter _orderSorter;
         
         private BoardView _boardView;
-        
         private Vector3 _positionBeforeDrag;
+        private static readonly int DragTrigger = Animator.StringToHash("Drag");
+        private static readonly int PlaceTrigger = Animator.StringToHash("Place");
+        private static readonly int RevertTrigger = Animator.StringToHash("Revert");
+        private static readonly int IdleTrigger = Animator.StringToHash("Idle");
+        private static readonly int AppearTrigger = Animator.StringToHash("Appear");
+        private static readonly int AppearOnHandTrigger = Animator.StringToHash("AppearOnHand");
+        private static readonly int DisappearTrigger = Animator.StringToHash("Disappear");
+        private static readonly string IdleState = "Idle";
+        private static readonly string InactiveState = "Inactive";
 
-        public bool IsDraggable;
+        public bool IsDraggable { get; set; }
+        public TileType Type => _type;
 
         protected override void OnInitialize(params object[] parameters)
         {
             Debug.Assert(parameters.Length == 1 && parameters[0] is BoardView);
+            Debug.Assert(Model.Type == _type);
             _boardView = (BoardView)parameters[0];
-            _spriteRenderer.sprite = _tileSprites.Single(x => x.Type == Model.Type).Sprite;
+            _orderSorter.SetOrder((int)Type);
         }
         
-        public void RestorePosition()
-        {
-            transform.DOMove(_positionBeforeDrag, 0.3f).SetEase(Ease.OutCubic);
-            _positionBeforeDrag = Vector3.zero;
-        }
-        
-        public void OnBeginDrag(PointerEventData eventData)
+        #region Drag
+        void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
         {
             if (!IsDraggable)
             {
@@ -57,9 +60,11 @@ namespace Core.Views
             }
             
             _positionBeforeDrag = transform.position;
+            _animator.SetTrigger(DragTrigger);
+            _orderSorter.Foreground = true;
         }
         
-        public void OnDrag(PointerEventData eventData)
+        void IDragHandler.OnDrag(PointerEventData eventData)
         {
             if (!IsDraggable)
             {
@@ -68,23 +73,78 @@ namespace Core.Views
             
             transform.position = Camera.main.ScreenToWorldPoint(eventData.position);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            
             _boardView.OnTileDrag(this);
         }
         
-        public void OnEndDrag(PointerEventData eventData)
+        void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
             if (!IsDraggable)
             {
                 return;
             }
             
+            _orderSorter.Foreground = false;
             _boardView.OnTileDragEnd(this);
         }
+        #endregion
         
         public async UniTask MoveTo(Vector3 position)
         {
-            await transform.DOMove(position, 0.3f).SetEase(Ease.OutCubic);
+            _orderSorter.Foreground = false;
+            await transform.DOMove(position, 0.2f).SetEase(Ease.OutQuad);
+        }
+        
+        public async UniTask Disappear()
+        {
+           _animator.SetTrigger(DisappearTrigger);
+           await _animatorWaiter.WaitState(InactiveState, 5);
+        }
+
+        public async UniTask Appear()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+            _animator.SetTrigger(AppearTrigger);
+            await _animatorWaiter.WaitState(IdleState, 5);
+        }
+        
+        public async UniTask AppearOnHand()
+        {
+            _animator.SetTrigger(AppearOnHandTrigger);
+            await _animatorWaiter.WaitState(IdleState, 5);
+        }
+        
+        public async UniTask Idle()
+        {
+            _animator.SetTrigger(IdleTrigger);
+            await _animatorWaiter.WaitState(IdleState, 5);
+        }
+        
+        public void RestoreHandPosition()
+        {
+            transform.DOMove(_positionBeforeDrag, 0.2f).SetEase(Ease.OutBack);
+            _positionBeforeDrag = Vector3.zero;
+            _animator.SetTrigger(RevertTrigger);
+        }
+        
+        public async UniTask PlaceOnBoard()
+        {
+            _animator.SetTrigger(PlaceTrigger);
+            await _animatorWaiter.WaitState(IdleState, 5);
+        }
+        
+        string IPooledGameObject.Id => _type.ToString();
+
+        GameObject IPooledGameObject.GameObject => gameObject;
+
+        void IPooledGameObject.Reset()
+        {
+            Release();
+            transform.position = Vector3.zero;
+            transform.localScale = Vector3.one;
+            _animator.Rebind();
+            _animator.Update(0f);
+            _orderSorter.Foreground = false;
+            _orderSorter.RestoreOrder();
         }
     }
 }

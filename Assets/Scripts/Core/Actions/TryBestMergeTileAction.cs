@@ -19,14 +19,14 @@ namespace Core.Actions
             _model = model;
             _view = view;
             _context = new Context();
-            
+
             _logicAction = new Logic(_model, other, _context);
             if (view != null)
             {
                 _visualAction = new Visual(_model, _view, _context);
             }
         }
-        
+
         public async UniTask<bool> Do()
         {
             var success = _logicAction.Do();
@@ -45,7 +45,7 @@ namespace Core.Actions
             public Vector2Int ToPosition;
             public Vector2Int FromPosition;
         }
-        
+
         private class Logic : LogicActionBase
         {
             private readonly Context _context;
@@ -61,15 +61,16 @@ namespace Core.Actions
 
             public override bool Do()
             {
-               var success = new BestMergeTileFinder(_model, _tileModel).TryFind(out _context.FromPosition, out _context.ToPosition);
-               if (success)
-               {
-                   _model.Tiles[_context.FromPosition.x, _context.FromPosition.y] = null;
-                   var toTileModel = _model.Tiles[_context.ToPosition.x, _context.ToPosition.y];
-                   _model.Tiles[_context.ToPosition.x, _context.ToPosition.y] = new TileModel(toTileModel.Type.Next(), _context.ToPosition);
-               }
+                var success = new BestMergeTileFinder(_model, _tileModel).TryFind(out _context.FromPosition, out _context.ToPosition);
+                if (success)
+                {
+                    _model.Tiles[_context.FromPosition.x, _context.FromPosition.y] = null;
+                    var toTileModel = _model.Tiles[_context.ToPosition.x, _context.ToPosition.y];
+                    var nextTileModel = new TileModel(toTileModel.Type.Next(), _context.ToPosition);
+                    _model.Tiles[_context.ToPosition.x, _context.ToPosition.y] = nextTileModel;
+                }
 
-               return success;
+                return success;
             }
         }
 
@@ -91,11 +92,16 @@ namespace Core.Actions
                 var tileViewFrom = _view.TileCells[_context.FromPosition.x, _context.FromPosition.y];
                 var tileViewTo = _view.TileCells[_context.ToPosition.x, _context.ToPosition.y];
 
-                await tileViewFrom.MoveTo(tileViewTo.transform.position);
-
                 _view.RemoveTile(_context.FromPosition);
                 _view.RemoveTile(_context.ToPosition);
-                _view.CreateTile(_model.Tiles[_context.ToPosition.x, _context.ToPosition.y]);
+
+                await (
+                    tileViewFrom.MoveTo(tileViewTo.transform.position),
+                    tileViewTo.Disappear(),
+                    _view.CreateTile(_model.Tiles[_context.ToPosition.x, _context.ToPosition.y]).Appear());
+
+                _view.ReleaseTile(tileViewFrom);
+                _view.ReleaseTile(tileViewTo);
             }
         }
     }

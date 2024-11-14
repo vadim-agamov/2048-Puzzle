@@ -91,8 +91,9 @@ namespace Core.Actions
             {
                 foreach (var index in Context.RefilledTiles)
                 {
-                    await UniTask.Delay(100);
-                    View.HandView.CreateTile(Model.Hand.Tiles[index], index);
+                    var view = View.HandView.CreateTile(Model.Hand.Tiles[index], index);
+                    await UniTask.Yield();
+                    await view.AppearOnHand();
                 }
             }
         }

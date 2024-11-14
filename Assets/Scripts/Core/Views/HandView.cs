@@ -1,5 +1,7 @@
 using System;
+using Core.Configs;
 using Core.Models;
+using Cysharp.Threading.Tasks;
 using Modules.Extensions;
 using UnityEngine;
 
@@ -9,10 +11,7 @@ namespace Core.Views
     {
         [SerializeField] 
         private Grid _grid;
-
-        [SerializeField]
-        private TileView _tileViewPrefab;
-
+        
         [SerializeField]
         private Transform _gridContainer;
 
@@ -21,6 +20,9 @@ namespace Core.Views
         
         [SerializeField]
         private EmptyCellView _emptyCellPrefab;
+        
+        [SerializeField]
+        private TilesConfig _tilesConfig;
 
         private TileView[] _tileViews;
         private HandModel Model { get; set; }
@@ -59,7 +61,7 @@ namespace Core.Views
                     continue;
                 }
                 
-                CreateTile(Model.Tiles[i], i);
+                CreateTile(Model.Tiles[i], i).Idle().Forget();
             }
         }
 
@@ -87,12 +89,13 @@ namespace Core.Views
             _tileViews[index] = null;
         }
 
-        public void CreateTile(TileModel model, int i)
+        public TileView CreateTile(TileModel model, int i)
         {
-            var tile = model.CreateView(_tileViewPrefab, _tilesContainer, BoardView);
+            var tile = model.CreateView(BoardView.TilePool.Get, _tilesConfig.GetPrefab(model.Type), _tilesContainer, BoardView);
             tile.transform.localPosition = GetCellPosition(i);
             tile.IsDraggable = true;
             _tileViews[i] = tile;
+            return tile;
         }
     }
 }
