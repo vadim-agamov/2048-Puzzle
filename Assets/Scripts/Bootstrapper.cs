@@ -14,7 +14,7 @@ public static class Bootstrapper
     private static void InitializeSceneStart()
     {
         Application.targetFrameRate = 60;
-        Time.fixedDeltaTime = 1f / Application.targetFrameRate;
+        //Time.fixedDeltaTime = 1f / Application.targetFrameRate;
         Application.quitting += OnApplicationQuit;
         _applicationCancellation = new CancellationTokenSource();
 

@@ -4,6 +4,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Game.Core.Board.Views;
 using Modules.Extensions;
+using Modules.ServiceLocator;
+using Modules.SoundService;
 using Modules.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,13 +23,16 @@ namespace Core.Views
         [SerializeField]
         private AnimatorWaiter _animatorWaiter;
         
-        
         [SerializeField]
         private TileType _type;
         
         [SerializeField]
         private TileOrderSorter _orderSorter;
         
+        [SerializeField]
+        private float _verticalOffset;
+
+        private ISoundService SoundService { get; set; }
         private BoardView _boardView;
         private Vector3 _positionBeforeDrag;
         private static readonly int DragTrigger = Animator.StringToHash("Drag");
@@ -49,6 +54,7 @@ namespace Core.Views
             Debug.Assert(Model.Type == _type);
             _boardView = (BoardView)parameters[0];
             _orderSorter.SetOrder((int)Type);
+            SoundService = Container.Resolve<ISoundService>();
         }
         
         #region Drag
@@ -72,7 +78,7 @@ namespace Core.Views
             }
             
             transform.position = Camera.main.ScreenToWorldPoint(eventData.position);
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y + _verticalOffset, 0);
             _boardView.OnTileDrag(this);
         }
         
@@ -104,6 +110,7 @@ namespace Core.Views
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.1));
             _animator.SetTrigger(AppearTrigger);
+            SoundService.Play("pop");
             await _animatorWaiter.WaitState(IdleState, 5);
         }
         
@@ -129,6 +136,7 @@ namespace Core.Views
         public async UniTask PlaceOnBoard()
         {
             _animator.SetTrigger(PlaceTrigger);
+            SoundService.Play("pop");
             await _animatorWaiter.WaitState(IdleState, 5);
         }
         
@@ -145,6 +153,11 @@ namespace Core.Views
             _animator.Update(0f);
             _orderSorter.Foreground = false;
             _orderSorter.RestoreOrder();
+        }
+
+        private void OnValidate()
+        {
+            _verticalOffset = _spriteRenderer.bounds.size.y;
         }
     }
 }

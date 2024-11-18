@@ -22,25 +22,25 @@ namespace Cheats
 
         public AdCheatsProvider(ICheatService cheatService)
         {
-            _showRewardedInterstitial = new CheatButton(cheatService, "Show Rewarded Interstitial", () =>
+            _showRewardedInterstitial = new CheatButton( "Show Rewarded Interstitial", () =>
             {
-                ServiceLocator.Resolve<IPlatformService>()
+                Container.Resolve<IPlatformService>()
                     .ShowRewardedInterstitial(Bootstrapper.SessionToken)
                     .ContinueWith(x => _isRewardedAdShown = x);
             });
             _isRewardedAdShownLabel = new CheatLabel(()=> $"Is Rewarded Interstitial Shown: {_isRewardedAdShown}");
             
-            _showInterstitial = new CheatButton(cheatService, "Show Interstitial", () =>
+            _showInterstitial = new CheatButton( "Show Interstitial", () =>
             {
-                ServiceLocator.Resolve<IPlatformService>()
+                Container.Resolve<IPlatformService>()
                     .ShowInterstitial(Bootstrapper.SessionToken)
                     .ContinueWith(x => _isInterstitialAdShown = x);
             });
             _isInterstitialAdShownLabel = new CheatLabel(()=> $"Is Interstitial Shown: {_isInterstitialAdShown}");
             
-            _showRewardedVideo = new CheatButton(cheatService, "Show Rewarded Video", () =>
+            _showRewardedVideo = new CheatButton( "Show Rewarded Video", () =>
             {
-                ServiceLocator.Resolve<IPlatformService>()
+                Container.Resolve<IPlatformService>()
                     .ShowRewardedVideo(Bootstrapper.SessionToken)
                     .ContinueWith(x => _isRewardedVideoAdShown = x);
             });

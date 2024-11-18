@@ -11,6 +11,8 @@ namespace Core.Actions
         private int _length;
         private readonly BoardModel _boardModel;
         private readonly LinkedList<TileModel> _chain = new();
+        
+        private int _depth;
 
 
         public BestMergeTileFinder(BoardModel model, TileModel tileFrom)
@@ -29,6 +31,15 @@ namespace Core.Actions
 
         private void Find(TileModel tile)
         {
+            _depth++;
+            
+            if (_depth > 100)
+            {
+                Debug.LogError("Depth limit reached");
+                return;
+            }
+                
+            Debug.Assert(tile != null, $"[{nameof(BestMergeTileFinder)}] tile is null");
             foreach (var other in GetNeighbors(tile))
             {
                 if (CanMerge(tile, other))
@@ -63,7 +74,7 @@ namespace Core.Actions
             }
         }
 
-        private static bool CanMerge(TileModel from, TileModel to) => from.Type == to.Type;
+        private static bool CanMerge(TileModel from, TileModel to) => from.Type == to.Type && from.Type != TileType.MaxTile;
 
         private IEnumerable<TileModel> GetNeighbors(TileModel tile)
         {
@@ -110,9 +121,9 @@ namespace Core.Actions
 
             bool IsValid(Vector2Int position, out TileModel m)
             {
-                m = null;
                 if (!IsInBounds(position))
                 {
+                    m = null;
                     return false;
                 }
 

@@ -12,7 +12,13 @@ namespace Core.Models
         
         public HandModel Hand { get; }
         
-        public int Score => Tiles.Where(m => m != null).Sum(m => m.Type.Score());
+        public int Score { get; private set; }
+        
+        public void AddScore(int value)
+        {
+            Debug.Assert(value >= 0);
+            Score += value;
+        }
         
         public BoardModel(Vector2Int size)
         {

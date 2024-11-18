@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_Data:
-    m_SerializedData: []
   m_GUID: 3ee05ab2f47754bf0abcb3e3bb072ad6
   m_SerializeEntries:
-  - m_GUID: 6252e4cdedb4d48c0836dee0e68b09d3
-    m_Address: FlyItemsConfig
+  - m_GUID: 4607af9d45cd742819d355e17b2e35fb
+    m_Address: SoundsConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4607af9d45cd742819d355e17b2e35fb
-    m_Address: SoundsConfig
+  - m_GUID: 4a7afb30946a24f698e072d019728383
+    m_Address: CoreHUD
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6252e4cdedb4d48c0836dee0e68b09d3
+    m_Address: FlyItemsConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +34,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: e761147f9fc4b4cfd8e1bb18bb47d59b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: c9de7c3f16b604df89012a49f56e6b22, type: 2}
     - {fileID: 11400000, guid: e41c7f93719384aba9778a83c8068a76, type: 2}
+    - {fileID: 11400000, guid: c9de7c3f16b604df89012a49f56e6b22, type: 2}

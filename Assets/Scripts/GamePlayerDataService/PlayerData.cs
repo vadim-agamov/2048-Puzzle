@@ -19,9 +19,6 @@ namespace Services.GamePlayerDataService
         public DateTime AdsLastShownDate;
         
         [JsonProperty]
-        public int Level;
-        
-        [JsonProperty]
         public bool MuteSound;
 
         [JsonProperty]

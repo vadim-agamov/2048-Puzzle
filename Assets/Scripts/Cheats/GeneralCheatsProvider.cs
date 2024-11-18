@@ -19,7 +19,7 @@ namespace Cheats
         {
             _playerDataService = playerDataService;
 
-            _reset = new CheatButton(cheatService, "Reset", () =>
+            _reset = new CheatButton( "Reset", () =>
             {
                 Debug.Log("Reset");
                 _playerDataService.ResetData();

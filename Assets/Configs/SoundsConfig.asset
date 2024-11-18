@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af6a25b00974ea0990993539be70290, type: 3}
   m_Name: SoundsConfig
   m_EditorClassIdentifier: 
-  _sounds: []
+  _sounds:
+  - Id: ambient
+    Clip: {fileID: 8300000, guid: ed210a2bfb0e3492db91630ef6a8274f, type: 3}
+  - Id: pop
+    Clip: {fileID: 8300000, guid: f88c83dfaafa24c38858495ba9866e9a, type: 3}

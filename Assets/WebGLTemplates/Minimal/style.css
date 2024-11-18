@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%
+}
+
+canvas {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*https://10015.io/tools/css-loader-generator*/
+
+.progress {
+    width: 172.8px;
+    height: 31.7px;
+    border-radius: 28.8px;
+    color: #E99F68;
+    border: 2.9px solid;
+    position: relative;
+}
+
+.progress-inner {
+    content: "";
+    position: absolute;
+    margin: 2.9px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: currentColor;
+}

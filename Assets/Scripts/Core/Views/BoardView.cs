@@ -4,6 +4,8 @@ using Core.Models;
 using Cysharp.Threading.Tasks;
 using Modules.Extensions;
 using Modules.UiComponents;
+using Modules.UiComponents.UiRectsManager;
+using Modules.UIService;
 using Modules.Utils;
 using UnityEngine;
 
@@ -32,26 +34,32 @@ namespace Core.Views
         [SerializeField]
         private TilesConfig _tilesConfig;
         
+        [SerializeField]
+        private SpriteRenderer _background;
+        
         private EmptyCellView[,] _gridCells;
         private TileView[,] _tileCells;
         private Vector2Int _hoveredCell = Vector2Int.zero;
         private GameObjectsPool _tilePool;
-        
+        private UiRect _boardUiRect;
+        private IUIService _uiService;
+
         private BoardModel Model { get; set; }
         private BoardController Controller { get; set; }
         public TileView[,] TileCells => _tileCells;
         public HandView HandView => _handView;
         public GameObjectsPool TilePool => _tilePool;
         
-        public void Initialize(BoardController controller, BoardModel model)
+        public void Initialize(BoardController controller, BoardModel model, UIService uiService)
         {
             _tilePool = new GameObjectsPool(new GameObject("[POOL]").transform);
+            _uiService = uiService;
             Model = model;
             Controller = controller;
             CreateGrid();
             CreateCells();
             CreateHand(model);
-            FitCamera();
+            FitCamera().Forget();
         }
 
         public void OnTileDrag(TileView tileView)
@@ -61,6 +69,7 @@ namespace Core.Views
                 cell.y < 0 || cell.y > Model.Size.y - 1 ||
                 _tileCells[cell.x, cell.y] != null)
             {
+                _gridCells.ForEach(v => v.HoverOut());
                 return;
             }   
             
@@ -71,7 +80,6 @@ namespace Core.Views
                 _gridCells[_hoveredCell.x, _hoveredCell.y].HoverIn();
             }
         }
-        
 
         public void OnTileDragEnd(TileView tileView)
         {
@@ -86,7 +94,7 @@ namespace Core.Views
             _gridCells[_hoveredCell.x, _hoveredCell.y].HoverOut();
             Controller.PutTileOnBoard(cell, tileView);
         }
-        
+
         private void CreateHand(BoardModel model)
         {
             _handView.Initialize(model.Hand, this);
@@ -99,7 +107,7 @@ namespace Core.Views
                     continue;
             }
         }
-        
+
         private void CreateGrid()
         {
             _gridCells = new EmptyCellView[Model.Size.x, Model.Size.y];
@@ -131,7 +139,7 @@ namespace Core.Views
                 }
             }
         }
-        
+
         public TileView CreateTile(TileModel model)
         {
             var tile = model.CreateView(_tilePool.Get, _tilesConfig.GetPrefab(model.Type), _cellsContainer, this);
@@ -139,7 +147,7 @@ namespace Core.Views
             _tileCells[model.BoardPosition.x, model.BoardPosition.y] = tile;
             return tile;
         }
-        
+
         public void ReleaseTile(TileView tileView) => _tilePool.Release(tileView);
 
         public TileView RemoveTile(Vector2Int position)
@@ -149,7 +157,7 @@ namespace Core.Views
             // _tilePool.Release(tileView);
             return tileView;
         }
-        
+
         public async UniTask PutTileFromHand(Vector2Int position, TileView tileView)
         {
             Debug.Assert(_tileCells[position.x, position.y] == null, $"Tile already exists {position}");
@@ -163,9 +171,25 @@ namespace Core.Views
             await tileView.PlaceOnBoard();
         }
 
-        private void FitCamera() => _camera.FitOrthographic(VisibleWorldRect, 1);
+        private async UniTask FitCamera()
+        {
+            if (_boardUiRect == null)
+            {
+                UiRectsManager.TryGetWorldRect("board", out _boardUiRect);
+                _boardUiRect.OnRectTransformDimensionsChanged += () => FitCamera().Forget();
+            }
 
-        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect);
+            await _camera.FitOrthographic(VisibleWorldRect, _boardUiRect.RectTransform);
+            FitBackToCamera();
+        }
+        
+        private void FitBackToCamera()
+        {
+            _background.size = _camera.orthographicSize * 2 * new Vector2(_camera.aspect, 1);
+            _background.transform.position = new Vector3(_camera.transform.position.x, _camera.transform.position.y, 0);
+        }
+
+        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect).Expand(_grid.cellSize.x);
 
         private Rect VisibleGridWorldRect
         {

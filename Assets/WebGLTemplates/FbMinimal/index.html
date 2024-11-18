@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | {{{ PRODUCT_NAME }}}</title>
+    <style>
+      html,
+      body,
+      canvas { height: 100%; width: 100%; border: 0px; margin: 0px; }
+    </style>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas"></canvas>
+    
+    <script src="https://connect.facebook.net/en_US/fbinstant.7.1.js"></script>
+    
+    <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+    <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+      }
+      
+      let logic_progress = 0;
+      let visual_progress = 0;
+      let unityInstance = null;
+      let preloadedRewardedVideo = null;
+      let preloadedInterstitial = null;
+
+      FBInstant.initializeAsync()
+              .then(function ()
+              {
+                console.log("FBInstant initializeAsync");
+              })
+              .then(function()
+              {
+                console.log("FBInstant createUnityInstance");
+                LoadUnityInstance();
+                StartVis()
+              });
+
+      function lerp(a, b, t)
+      {
+        return (1 - t) * a + t * b;
+      }
+      
+      function StartVis()
+      {
+        let timer = setInterval(function()
+        {
+            visual_progress = lerp( visual_progress, logic_progress, 0.03);
+            visual_progress = Math.ceil(visual_progress * 100) / 100;
+            console.log("visual progress: " + visual_progress + ", logic progress: " + logic_progress);
+            FBInstant.setLoadingProgress(visual_progress * 100);
+
+          if (visual_progress > 0.99 || logic_progress > 0.99)
+          {
+            FBInstant.setLoadingProgress(100);
+            clearInterval(timer);
+          }
+        }, 100);
+      }
+
+      function LoadUnityInstance()
+      {
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if MEMORY_FILENAME
+        memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      },
+      (p) => 
+      {
+        logic_progress = p;
+        if(logic_progress > 1) logic_progress = 1;
+      }).then((instance) => {
+        console.log("startGameAsync load");
+        unityInstance = instance;
+      }).then(() => {
+        console.log("startGameAsync loaded"); 
+      }).catch((message) => {
+        console.log("startGameAsync error: " + message);
+      });
+      }
+    </script>
+  </body>
+</html>

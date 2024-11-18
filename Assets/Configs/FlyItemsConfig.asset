@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945ded1d3fcb44b68077bab479f827e5, type: 3}
   m_Name: FlyItemsConfig
   m_EditorClassIdentifier: 
-  _icons: []
+  _icons:
+  - Icon: {fileID: 21300000, guid: 366fc9cc45cbe4198bc5b4906130ad04, type: 3}
+    Name: ScoreToken
+  _flyUpItemViewPrefab: {fileID: 6061191041103193010, guid: 56c20c537d57e464f9f60e12b41d9493, type: 3}

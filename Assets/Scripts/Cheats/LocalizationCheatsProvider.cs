@@ -18,13 +18,13 @@ namespace Cheats
         {
             LocalizationService = localizationService;
             
-            _langRussian = new CheatButton(cheatService, Language.Russian.ToString(),
+            _langRussian = new CheatButton( Language.Russian.ToString(),
                 () => LocalizationService.SetLanguage(Language.Russian),
                 false);
-            _langEnglish = new CheatButton(cheatService, Language.English.ToString(),
+            _langEnglish = new CheatButton( Language.English.ToString(),
                 () => LocalizationService.SetLanguage(Language.English),
                 false);
-            _langTurkish = new CheatButton(cheatService, Language.Turkish.ToString(),
+            _langTurkish = new CheatButton( Language.Turkish.ToString(),
                 () => LocalizationService.SetLanguage(Language.Turkish),
                 false);
 

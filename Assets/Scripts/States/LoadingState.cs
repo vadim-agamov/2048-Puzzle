@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cheats;
 using Core.State;
@@ -36,41 +37,41 @@ namespace States
         {
             SetupEventSystem();
 
-            IJumpScreenService jumpScreenService = ServiceLocator.Bind(GameObject.Find("JumpScreen").GetComponent<JumpScreen>());
+            IJumpScreenService jumpScreenService = Container.BindAndInject(GameObject.Find("JumpScreen").GetComponent<JumpScreen>());
             await jumpScreenService.Show(token);
             
 #if UNITY_EDITOR
-            ServiceLocator.Bind<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
+            Container.BindAndInject<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
 #elif FB
             IPlatformService platformService = new GameObject("FbBridge").AddComponent<FbPlatformService>();
 #elif YANDEX
-            IPlatformService platformService = new GameObject("Yandex").AddComponent<YandexPlatformService>();
+            Container.BindAndInject<IPlatformService>(new GameObject("Yandex").AddComponent<YandexPlatformService>());
 #elif CRAZY
             IPlatformService platformService = new CrazyPlatformService();
 #elif DUMMY_WEBGL
-            IPlatformService platformService = new GameObject("DummySN").AddComponent<DummyPlatformService>();
+            Container.BindAndInject<IPlatformService>(new GameObject("DummySN").AddComponent<DummyPlatformService>());
 #endif
 
-            ServiceLocator.Bind<IUIService>(new UIService(new Vector2(1080, 1920)));
-            ServiceLocator.Bind(new GameObject().AddComponent<GamePlayerDataService>());
-            var localizationService = ServiceLocator.Bind<ILocalizationService>(new LocalizationService());
-            ServiceLocator.Bind<IAnalyticsService>(new AnalyticsService());
-            ServiceLocator.Bind<IFlyItemsService>(new FlyItemsService());
-            ServiceLocator.Bind<ISoundService>(new GameObject().AddComponent<SoundService>());
+            Container.BindAndInject<IUIService>(new UIService(new Vector2(1080, 1920)));
+            var playerDataService = Container.BindAndInject(new GameObject().AddComponent<GamePlayerDataService>());
+            var localizationService = Container.BindAndInject<ILocalizationService>(new LocalizationService());
+            Container.BindAndInject<IAnalyticsService>(new AnalyticsService());
+            Container.BindAndInject<IFlyItemsService>(new FlyItemsService());
+            Container.BindAndInject<ISoundService>(new GameObject().AddComponent<SoundService>());
             
 #if DEV
-            RegisterCheats(localizationService);
+            RegisterCheats(localizationService, playerDataService);
 #endif
             
                         
-            var initializableServices = ServiceLocator.AllServices<IInitializable>();
+            var initializableServices = Container.AllServices<IInitializable>();
             await new Initializator(initializableServices).Do(token, jumpScreenService);
             
             Debug.Log($"[{nameof(LoadingState)}] all services registered");
 
-            // var newInstall = playerDataService.PlayerData.InstallDate == playerDataService.PlayerData.LastSessionDate;
-            // playerDataService.PlayerData.LastSessionDate = DateTime.Now;
-            // playerDataService.Commit();
+            var newInstall = playerDataService.PlayerData.InstallDate == playerDataService.PlayerData.LastSessionDate;
+            playerDataService.PlayerData.LastSessionDate = DateTime.Now;
+            playerDataService.Commit();
             
             // ServiceLocator.Get<IAnalyticsService>().Start();
             
@@ -94,11 +95,11 @@ namespace States
         }
 
 #if DEV
-        private void RegisterCheats(ILocalizationService localizationService)
+        private void RegisterCheats(ILocalizationService localizationService, GamePlayerDataService playerDataService)
         {
             ICheatService cheatService = new GameObject().AddComponent<CheatService>();
-            ServiceLocator.Bind(cheatService);
-            // cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, ServiceLocator.Get<GamePlayerDataService>()));
+            Container.BindAndInject(cheatService);
+            cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, playerDataService));
             cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
             cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService, localizationService));
         }  
