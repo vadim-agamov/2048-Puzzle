@@ -111,11 +111,12 @@ namespace Core.Actions
                 _view.RemoveTile(_context.FromPosition);
                 _view.RemoveTile(_context.ToPosition);
 
+                _flyItemsService.Fly("ScoreToken", fromScreenPosition, "score", score, FlyType.FlyUp).Forget();
+                
                 await (
                     tileViewFrom.MoveTo(tileViewTo.transform.position),
                     tileViewTo.Disappear(),
-                    _view.CreateTile(_model.Tiles[_context.ToPosition.x, _context.ToPosition.y]).Appear(),
-                    _flyItemsService.Fly("ScoreToken", fromScreenPosition, "score", score, FlyType.FlyUp)
+                    _view.CreateTile(_model.Tiles[_context.ToPosition.x, _context.ToPosition.y]).Appear()
                     );
                 
                 _view.ReleaseTile(tileViewFrom);

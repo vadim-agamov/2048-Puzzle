@@ -39,7 +39,7 @@ namespace Core.Actions
 
             public override bool Do()
             {
-                if(_boardModel.Hand.Tiles.Any(m => m != null))
+                if(_boardModel.Hand.Tiles.All(m => m != null))
                 {
                     return false;
                 }
@@ -55,6 +55,7 @@ namespace Core.Actions
                             .Where((m, _, _) => m != null)
                             .Where(m => m.Type != TileType.None)
                             .Select(m => (int)m.Type)
+                            .Append((int)TileType.Tile1)
                             .Max();
 
                         var minTile = (int)TileType.Tile1;// Math.Max(1, maxTileOnBoard - 5);

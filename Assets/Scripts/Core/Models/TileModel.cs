@@ -1,3 +1,4 @@
+using Modules.ComponentWithModel;
 using Modules.Extensions;
 using UnityEngine;
 

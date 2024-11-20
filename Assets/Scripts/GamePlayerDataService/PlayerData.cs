@@ -19,13 +19,21 @@ namespace Services.GamePlayerDataService
         public DateTime AdsLastShownDate;
         
         [JsonProperty]
-        public bool MuteSound;
+        public bool SoundEnabled;
+        
+        [JsonProperty]
+        public bool MusicEnabled;
 
         [JsonProperty]
         public string InstallVersion;
         
+        [JsonProperty]
+        public int GamesPlayed;
+        
         public PlayerData()
         {
+            SoundEnabled = true;
+            MusicEnabled = true;
             InstallDate = DateTime.Now;
             LastSessionDate = DateTime.Now;
             InstallVersion = Application.version;

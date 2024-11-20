@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Core.Configs;
+using Core.Controller;
 using Core.Models;
 using Cysharp.Threading.Tasks;
+using Modules.ComponentWithModel;
 using Modules.Extensions;
+using Modules.Utils;
 using UnityEngine;
 
 namespace Core.Views
@@ -22,11 +26,36 @@ namespace Core.Views
         private EmptyCellView _emptyCellPrefab;
         
         [SerializeField]
+        private PlayAdTileView _playAdTilePrefab;
+        
+        [SerializeField]
         private TilesConfig _tilesConfig;
 
         private TileView[] _tileViews;
         private HandModel Model { get; set; }
         private BoardView BoardView { get; set; }
+        private BoardController Controller { get; set; }
+        
+        private IPooledGameObject _playAdTileView;
+        private readonly List<IPooledGameObject> _emptyCells = new List<IPooledGameObject>();
+        private bool SlotForAdTileEnabled => Model.Size < BoardView.TileCells.GetLength(0);
+
+        private IEnumerable<IPooledGameObject> PooledObjects()
+        {
+            yield return _playAdTileView;
+            foreach (var cell in _emptyCells)
+            {
+                yield return cell;
+            }
+            foreach (var tile in _tileViews)
+            {
+                if (tile == null)
+                {
+                    continue;
+                }
+                yield return tile;
+            }   
+        }
 
         public Rect VisibleWorldRect
         {
@@ -43,12 +72,40 @@ namespace Core.Views
             }
         }
 
-        public void Initialize(HandModel model, BoardView boardView)
+        public void Initialize(HandModel model, BoardView boardView, BoardController boardController)
         {
             BoardView = boardView;
             Model = model;
+            Controller = boardController;
             CreateCells();
             CreateTiles();
+            CreatePlayAdTileView();
+        }
+        
+        public void Release()
+        {
+            foreach (var pooledObject in PooledObjects())
+            {
+                BoardView.TilePool.Release(pooledObject);
+            }
+            
+            _emptyCells.Clear();
+            _playAdTileView = null;
+            _tileViews = null;
+        }
+
+        private void CreatePlayAdTileView()
+        {
+            if (!SlotForAdTileEnabled)
+            {
+                return;
+            }
+            
+            var playAdTileView = BoardView.TilePool.Get(_playAdTilePrefab);
+            playAdTileView.transform.SetParent(_tilesContainer);
+            playAdTileView.transform.localPosition = GetCellPosition(Model.Size);
+            playAdTileView.OnClick += () => Controller.AddSlotToHand().Forget();
+            _playAdTileView = playAdTileView;
         }
 
         private void CreateTiles()
@@ -69,15 +126,18 @@ namespace Core.Views
         {
             for (var i = 0; i < Model.Size; i++)
             {
-                var cell = Instantiate(_emptyCellPrefab, _gridContainer);
+                var cell =  BoardView.TilePool.Get(_emptyCellPrefab);
+                cell.transform.SetParent(_gridContainer);
                 cell.transform.localPosition = GetCellPosition(i);
+                _emptyCells.Add(cell);
             }
         }
 
         private Vector3 GetCellPosition(int index)
         {
-            var handWidth = (Model.Size - 1) * _grid.cellSize.x;
-            var cellPosition = Mathf.Lerp(-handWidth / 2, handWidth / 2, index / (float)(Model.Size - 1));
+            var totalCells = SlotForAdTileEnabled ? Model.Size : Model.Size - 1; // 1 for ad tile
+            var handWidth = totalCells * _grid.cellSize.x;
+            var cellPosition = Mathf.Lerp(-handWidth / 2, handWidth / 2, index / (float)totalCells);
             return new Vector3(cellPosition, 0, 0);
         }
 

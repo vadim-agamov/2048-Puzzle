@@ -94,6 +94,7 @@ MonoBehaviour:
   _gridContainer: {fileID: 8535115105345248602}
   _tilesContainer: {fileID: 6581560756721602596}
   _emptyCellPrefab: {fileID: 7123892591967390845, guid: 000d34f371afc432787493883e26417b, type: 3}
+  _playAdTilePrefab: {fileID: 1793607704471788872, guid: 9691e548bd7bb4b068e786cc78c52cee, type: 3}
   _tilesConfig: {fileID: 11400000, guid: f6d804db1e73a40118e90aa0efe9862f, type: 2}
 --- !u!1 &1370950349090167199
 GameObject:
@@ -264,12 +265,12 @@ SpriteRenderer:
   m_SortingLayerID: 83103405
   m_SortingLayer: 1
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 0881e581c8f1a431d926310a3cd27f6e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: afefc9c0d479042788f2973d9f77a879, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 0.1, y: 0.1}
+  m_DrawMode: 2
+  m_Size: {x: 23.244951, y: 26.132477}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

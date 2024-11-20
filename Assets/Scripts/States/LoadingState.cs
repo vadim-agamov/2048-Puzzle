@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cheats;
 using Core.State;
@@ -6,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using Modules.AnalyticsService;
 using Modules.CheatService;
 using Modules.FlyItemsService;
-using Modules.FSM;
+using Modules.Fsm;
 using Modules.Initializator;
 using Modules.LocalizationService;
 using Modules.PlatformService;
@@ -41,21 +42,21 @@ namespace States
             await jumpScreenService.Show(token);
             
 #if UNITY_EDITOR
-            Container.BindAndInject<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
+            var platformService = Container.BindAndInject<IPlatformService>(new GameObject("EditorSN").AddComponent<EditorPlatformService>());
 #elif FB
             IPlatformService platformService = new GameObject("FbBridge").AddComponent<FbPlatformService>();
 #elif YANDEX
-            Container.BindAndInject<IPlatformService>(new GameObject("Yandex").AddComponent<YandexPlatformService>());
+            var platformService = Container.BindAndInject<IPlatformService>(new GameObject("Yandex").AddComponent<YandexPlatformService>());
 #elif CRAZY
             IPlatformService platformService = new CrazyPlatformService();
 #elif DUMMY_WEBGL
             Container.BindAndInject<IPlatformService>(new GameObject("DummySN").AddComponent<DummyPlatformService>());
 #endif
 
-            Container.BindAndInject<IUIService>(new UIService(new Vector2(1080, 1920)));
+            Container.BindAndInject<IUIService>(new UIService(new Vector2(1000, 1500)));
             var playerDataService = Container.BindAndInject(new GameObject().AddComponent<GamePlayerDataService>());
             var localizationService = Container.BindAndInject<ILocalizationService>(new LocalizationService());
-            Container.BindAndInject<IAnalyticsService>(new AnalyticsService());
+            var analyticsService = Container.BindAndInject<IAnalyticsService>(new AnalyticsService());
             Container.BindAndInject<IFlyItemsService>(new FlyItemsService());
             Container.BindAndInject<ISoundService>(new GameObject().AddComponent<SoundService>());
             
@@ -73,17 +74,17 @@ namespace States
             playerDataService.PlayerData.LastSessionDate = DateTime.Now;
             playerDataService.Commit();
             
-            // ServiceLocator.Get<IAnalyticsService>().Start();
+            analyticsService.Start();
             
             await Fsm.Enter(new CoreState(), token);
             
             await jumpScreenService.Hide(token);
             
-            // platformService.GameReady();
-            // ServiceLocator.Get<IAnalyticsService>().TrackEvent($"Loaded", new Dictionary<string, object>
-            // {
-                // { "new_install", newInstall }
-            // });
+            platformService.GameReady();
+            analyticsService.TrackEvent("loaded", new Dictionary<string, object>
+            {
+                { "new_install", newInstall }
+            });
         }
         
         private static void SetupEventSystem()
@@ -101,7 +102,7 @@ namespace States
             Container.BindAndInject(cheatService);
             cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, playerDataService));
             cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
-            cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService, localizationService));
+            // cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService, localizationService));
         }  
 #endif
         

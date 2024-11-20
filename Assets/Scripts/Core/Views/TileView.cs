@@ -3,10 +3,12 @@ using Core.Models;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Game.Core.Board.Views;
+using Modules.ComponentWithModel;
 using Modules.Extensions;
 using Modules.ServiceLocator;
 using Modules.SoundService;
 using Modules.Utils;
+using Services.GamePlayerDataService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -33,6 +35,7 @@ namespace Core.Views
         private float _verticalOffset;
 
         private ISoundService SoundService { get; set; }
+        private GamePlayerDataService PlayerData { get; set; }
         private BoardView _boardView;
         private Vector3 _positionBeforeDrag;
         private static readonly int DragTrigger = Animator.StringToHash("Drag");
@@ -55,6 +58,7 @@ namespace Core.Views
             _boardView = (BoardView)parameters[0];
             _orderSorter.SetOrder((int)Type);
             SoundService = Container.Resolve<ISoundService>();
+            PlayerData = Container.Resolve<GamePlayerDataService>();
         }
         
         #region Drag
@@ -97,7 +101,7 @@ namespace Core.Views
         public async UniTask MoveTo(Vector3 position)
         {
             _orderSorter.Foreground = false;
-            await transform.DOMove(position, 0.2f).SetEase(Ease.OutQuad);
+            await transform.DOMove(position, 0.15f).SetEase(Ease.OutQuad);
         }
         
         public async UniTask Disappear()
@@ -110,7 +114,10 @@ namespace Core.Views
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.1));
             _animator.SetTrigger(AppearTrigger);
-            SoundService.Play("pop");
+            if (PlayerData.PlayerData.SoundEnabled)
+            {
+                SoundService.Play("pop");
+            }
             await _animatorWaiter.WaitState(IdleState, 5);
         }
         
@@ -136,7 +143,10 @@ namespace Core.Views
         public async UniTask PlaceOnBoard()
         {
             _animator.SetTrigger(PlaceTrigger);
-            SoundService.Play("pop");
+            if (PlayerData.PlayerData.SoundEnabled)
+            {
+                SoundService.Play("pop");
+            }
             await _animatorWaiter.WaitState(IdleState, 5);
         }
         

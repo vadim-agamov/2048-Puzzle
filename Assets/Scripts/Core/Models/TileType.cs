@@ -16,7 +16,8 @@ namespace Core.Models
         Tile256,
         Tile512,
         Tile1024,
-        MaxTile = Tile1024
+        Tile2048,
+        MaxTile = Tile2048
     }
     
     public static class TileTypeExtensions
@@ -36,6 +37,7 @@ namespace Core.Models
             TileType.Tile256 => 256,
             TileType.Tile512 => 512,
             TileType.Tile1024 => 1024,
+            TileType.Tile2048 => 2048,
             _ => 0
         };
     }

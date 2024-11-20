@@ -2,6 +2,7 @@ using Core.Configs;
 using Core.Controller;
 using Core.Models;
 using Cysharp.Threading.Tasks;
+using Modules.ComponentWithModel;
 using Modules.Extensions;
 using Modules.UiComponents;
 using Modules.UiComponents.UiRectsManager;
@@ -58,7 +59,7 @@ namespace Core.Views
             Controller = controller;
             CreateGrid();
             CreateCells();
-            CreateHand(model);
+            CreateHand();
             FitCamera().Forget();
         }
 
@@ -94,18 +95,18 @@ namespace Core.Views
             _gridCells[_hoveredCell.x, _hoveredCell.y].HoverOut();
             Controller.PutTileOnBoard(cell, tileView);
         }
-
-        private void CreateHand(BoardModel model)
+        
+        public void ReloadHand()
         {
-            _handView.Initialize(model.Hand, this);
+            _handView.Release();
+            _handView.Initialize(Model.Hand, this, Controller);
+        }
+
+        private void CreateHand()
+        {
+            _handView.Initialize(Model.Hand, this, Controller);
             var rect = VisibleGridWorldRect;
             _handView.transform.position = new Vector3(rect.center.x, rect.yMin - _grid.cellSize.y);
-            
-            foreach (var handViewTileView in _handView.Tiles)
-            {
-                if(handViewTileView == null)
-                    continue;
-            }
         }
 
         private void CreateGrid()
@@ -154,7 +155,6 @@ namespace Core.Views
         {
             var tileView = _tileCells[position.x, position.y];
             _tileCells[position.x, position.y] = null;
-            // _tilePool.Release(tileView);
             return tileView;
         }
 
@@ -189,7 +189,7 @@ namespace Core.Views
             _background.transform.position = new Vector3(_camera.transform.position.x, _camera.transform.position.y, 0);
         }
 
-        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect).Expand(_grid.cellSize.x);
+        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect).Expand(_grid.cellSize.x / 2);
 
         private Rect VisibleGridWorldRect
         {

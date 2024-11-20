@@ -25,9 +25,9 @@ namespace Cheats
                 _playerDataService.ResetData();
             });
             
-            _installDate = new CheatLabel(() => $"Install date: {_playerDataService.PlayerData?.InstallDate}");
-            _lastSessionDate = new CheatLabel(() => $"Last Session date: {_playerDataService.PlayerData?.LastSessionDate}");
-            _adsLastShownDate = new CheatLabel(() => $"Ads Shown date: {_playerDataService.PlayerData?.AdsLastShownDate}");
+            _installDate = new CheatLabel(() => $"Install: {_playerDataService.PlayerData?.InstallDate:d.M.yy}");
+            _lastSessionDate = new CheatLabel(() => $"Session: {_playerDataService.PlayerData?.LastSessionDate:d.M.yy}");
+            _adsLastShownDate = new CheatLabel(() => $"Ads: {_playerDataService.PlayerData?.AdsLastShownDate:d.M.yy}");
         }
 
         void ICheatsProvider.OnGUI()

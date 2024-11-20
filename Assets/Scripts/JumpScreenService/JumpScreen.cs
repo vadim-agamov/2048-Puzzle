@@ -49,7 +49,7 @@ namespace Services.JumpScreenService
         {
             Debug.Log($"[{nameof(JumpScreen)}] progress: {value}");
             _progressText.gameObject.SetActive(true);
-            _progressText.text = $"{(100 * value):0}%";
+            _progressText.text = $"Loading {(100 * value):0}%";
         }
     }
 }
