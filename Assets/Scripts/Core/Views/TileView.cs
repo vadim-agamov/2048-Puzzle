@@ -4,8 +4,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Game.Core.Board.Views;
 using Modules.ComponentWithModel;
+using Modules.DiContainer;
 using Modules.Extensions;
-using Modules.ServiceLocator;
 using Modules.SoundService;
 using Modules.Utils;
 using Services.GamePlayerDataService;
@@ -101,7 +101,7 @@ namespace Core.Views
         public async UniTask MoveTo(Vector3 position)
         {
             _orderSorter.Foreground = false;
-            await transform.DOMove(position, 0.15f).SetEase(Ease.OutQuad);
+            await transform.DOMove(position, 0.2f).SetEase(Ease.OutQuad);
         }
         
         public async UniTask Disappear()

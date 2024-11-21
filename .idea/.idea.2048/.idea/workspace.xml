@@ -10,121 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a34d4e0f-8588-439e-978e-8e4495445aba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/TileBack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/TileBack.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/GameAssets/UI/EndGame.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor/FigmaFile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor/FigmaFile.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor/FigmaImporterEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor/FigmaImporterEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor/FigmaNodeImporter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/Editor/FigmaNodeImporter.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/FigmaImporter.asmdef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/FigmaImporter/FigmaImporter.asmdef.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/UIService/CustomCanvasScreenSizeScaler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/UIService/CustomCanvasScreenSizeScaler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/UIService/CustomCanvasScreenSizeScalerEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/UIService/CustomCanvasScreenSizeScalerEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/Utils/Disposable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Modules/Utils/Disposable.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/PlayAdTileView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/PlayAdTileView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EndGameView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EndGameView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/OnOffUiButton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/OnOffUiButton.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2048/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2048/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/UI/EndGame.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Atlases/CoreAtlas.spriteatlasv2.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Atlases/CoreAtlas.spriteatlasv2.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Configs/TilesConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Configs/TilesConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Fonts/baloo-cyrillic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Fonts/baloo-cyrillic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/BoardView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/BoardView.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile1024.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile1024.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile128.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile128.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile16.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile16.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/JumpScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/JumpScreen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile256.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile256.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile32.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile32.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile4.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile512.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile512.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile64.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile64.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile8.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Prefabs/Tile8.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sounds/acoustic-music-245092.mp3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sounds/acoustic-music-245092.mp3.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Background.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/EmptyTile.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/EmptyTile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/FigmaNodeImporter.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/FigmaNodeImporter.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/ScoreToken.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/ScoreToken.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile1024.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile128.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile128.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile16.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile2048.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile2048.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile256.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile256.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile32.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile512.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile64.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile64.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/UI/CoreHUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/UI/CoreHUD.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/UI/Images/BluePanel.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/UI/Images/BluePanel.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/UI/Images/FigmaNodeImporter.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/UI/Images/FigmaNodeImporter.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/UI/Images/OrangeGradientPanel.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameAssets/UI/Images/OrangeGradientPanel.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/AnalyticsService/UnityAnalytic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/AnalyticsService/UnityAnalytic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/CheatService/CheatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/CheatService/CheatService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/ComponentWithModel/ComponentWithModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/ComponentWithModel/ComponentWithModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/Fsm/FsmService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/Fsm/FsmService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/Fsm/IState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/Fsm/IState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/PlatformService/Editor/Build/BuildDummyWebGl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/PlatformService/Editor/Build/BuildDummyWebGl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/PlatformService/Editor/Build/BuildFb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/PlatformService/Editor/Build/BuildFb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/PlatformService/Editor/Build/BuildYandex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/PlatformService/Editor/Build/BuildYandex.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/SoundService/SoundService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/SoundService/SoundService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/UIService/UIModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/UIService/UIModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/UIService/UIService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/UIService/UIService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/UIService/UiModelExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/UIService/UiModelExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Modules/Utils/GameObjectsPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Modules/Utils/GameObjectsPool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameStarter.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameStarter.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bootstrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bootstrapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameAssets/Sprites/Tile2.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cheats/AdCheatsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cheats/AdCheatsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cheats/GeneralCheatsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cheats/GeneralCheatsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryRefillHandAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cheats/LocalizationCheatsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cheats/LocalizationCheatsProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Controller/BoardController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/BoardModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/HandModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/HandModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Models/TileType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/State/CoreState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/State/CoreState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/BoardView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/EmptyCellView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/EmptyCellView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/HandView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Views/TileView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaFile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaFile.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaImporter.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaImporter.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaImporterEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaImporterEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaNodeImporter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/FigmaImporter/FigmaNodeImporter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/GamePlayerDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/GamePlayerDataService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/PlayerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/JumpScreenService/JumpScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/JumpScreenService/JumpScreen.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/LoadingState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/LoadingState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CoreHUDModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CoreHUDModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CoreHUDView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CoreHUDView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020/index.html.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020/template.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020/template.html.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020/thumbnail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WebGLTemplates/Crazy_2020/thumbnail.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +39,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Assets/Modules" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ff87c59c5ac40d69c02c27bc5571d641dd800/1e/ffc578d2/Component.cs" root0="SKIP_HIGHLIGHTING" />
@@ -183,14 +89,15 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/da6a1787df247a0274ec8fc4840f41df092ee13874f55f87a9db568acab1bd2/System.Reflection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/CheatService/Controls/CheatControl.cs~" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/ComponentWithModel/ComponentWithModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Modules/DiContainer/Container.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Modules/DiContainer/InjectAttribute.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/Extensions/RandomExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/LocalizationService/ILocalizationService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/LocalizationService/Localization.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/LocalizationService/LocalizationService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Modules/ServiceLocator/Container.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Modules/ServiceLocator/InjectAttribute.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/UIService/CustomCanvasScreenSizeScaler.cs.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Modules/UIService/CustomCanvasScreenSizeScalerEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryBestMergeTileAction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Actions/TryMergeTileAction.cs~" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Models/TileModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GamePlayerDataService/GamePlayerDataService.cs.meta" root0="FORCE_HIGHLIGHTING" />
@@ -303,7 +210,8 @@
       <workItem from="1731946359579" duration="8679000" />
       <workItem from="1732033353173" duration="26640000" />
       <workItem from="1732126952903" duration="82000" />
-      <workItem from="1732127051492" duration="2391000" />
+      <workItem from="1732127051492" duration="3199000" />
+      <workItem from="1732183962388" duration="6413000" />
     </task>
     <servers />
   </component>

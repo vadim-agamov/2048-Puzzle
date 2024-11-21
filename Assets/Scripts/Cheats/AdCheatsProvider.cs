@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 using Modules.CheatService;
 using Modules.CheatService.Controls;
+using Modules.DiContainer;
 using Modules.PlatformService;
-using Modules.ServiceLocator;
 
 namespace Cheats
 {

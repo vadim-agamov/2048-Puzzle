@@ -2,7 +2,6 @@ using Modules.CheatService;
 using Modules.CheatService.Controls;
 using Modules.LocalizationService;
 using Modules.PlatformService;
-using Modules.ServiceLocator;
 
 namespace Cheats
 {

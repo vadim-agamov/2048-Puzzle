@@ -6,12 +6,12 @@ using Core.State;
 using Cysharp.Threading.Tasks;
 using Modules.AnalyticsService;
 using Modules.CheatService;
+using Modules.DiContainer;
 using Modules.FlyItemsService;
 using Modules.Fsm;
 using Modules.Initializator;
 using Modules.LocalizationService;
 using Modules.PlatformService;
-using Modules.ServiceLocator;
 using Modules.SoundService;
 using Modules.UIService;
 using Services.GamePlayerDataService;
@@ -47,10 +47,8 @@ namespace States
             IPlatformService platformService = new GameObject("FbBridge").AddComponent<FbPlatformService>();
 #elif YANDEX
             var platformService = Container.BindAndInject<IPlatformService>(new GameObject("Yandex").AddComponent<YandexPlatformService>());
-#elif CRAZY
-            IPlatformService platformService = new CrazyPlatformService();
 #elif DUMMY_WEBGL
-            Container.BindAndInject<IPlatformService>(new GameObject("DummySN").AddComponent<DummyPlatformService>());
+            var platformService = Container.BindAndInject<IPlatformService>(new GameObject("DummySN").AddComponent<DummyPlatformService>());
 #endif
 
             Container.BindAndInject<IUIService>(new UIService(new Vector2(1000, 1500)));
@@ -64,8 +62,7 @@ namespace States
             RegisterCheats(localizationService, playerDataService);
 #endif
             
-                        
-            var initializableServices = Container.AllServices<IInitializable>();
+            var initializableServices = Container.AllInstances<IInitializable>();
             await new Initializator(initializableServices).Do(token, jumpScreenService);
             
             Debug.Log($"[{nameof(LoadingState)}] all services registered");

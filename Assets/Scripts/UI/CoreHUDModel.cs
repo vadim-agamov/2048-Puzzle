@@ -1,5 +1,5 @@
 using Core.Controller;
-using Modules.ServiceLocator;
+using Modules.DiContainer;
 using Modules.SoundService;
 using Modules.UIService;
 using Services.GamePlayerDataService;

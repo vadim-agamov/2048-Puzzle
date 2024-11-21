@@ -140,7 +140,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.28
+  bundleVersion: 1.30
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -684,10 +684,10 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: PROJECT:Yandex
+  webGLTemplate: PROJECT:Minimal
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 0
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
@@ -705,7 +705,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    WebGL: UNITASK_DOTWEEN_SUPPORT;ANALYTICS;DEV;YANDEX
+    WebGL: UNITASK_DOTWEEN_SUPPORT;ANALYTICS;DEV;DUMMY_WEBGL
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
