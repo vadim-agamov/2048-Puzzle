@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42dd9521d5ae4cb1a321ca670cb040a8, type: 3}
   m_Name: FigmaNodeImporter
   m_EditorClassIdentifier: 
-  _figmaToken: figd_cIGlipWfxQr3USOjgwaUkjt3jBZi9VyOBtTt9DqO
+  _figmaToken: {fileID: 11400000, guid: 847ce52bafbfc4113b5cc9ab7f4fa203, type: 2}
   _figmaProjectId: OVByFGcnGyJAUMy29wI8x9
   _figmaNodeConfig:
   - _unityExportPath: Assets/GameAssets/Sprites
