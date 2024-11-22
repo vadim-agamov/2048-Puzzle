@@ -9,9 +9,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 373298000315299436, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
+      propertyPath: m_Size.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 373298000315299436, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bbf99d289c37a43a4afff1d7210e270b, type: 3}
+      objectReference: {fileID: -7174583451156371245, guid: bbf99d289c37a43a4afff1d7210e270b, type: 3}
+    - target: {fileID: 373298000315299436, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2178091145312458035, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_Name
       value: Tile4
@@ -62,11 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912711973199980549, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: _verticalOffset
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 8298473710634750534, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
