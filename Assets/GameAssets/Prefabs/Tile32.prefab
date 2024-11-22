@@ -10,12 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 373298000315299436, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_Size.y
-      value: 1.71
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: 373298000315299436, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7722931374819749994, guid: 1f71e3459ab7848f3856f81f8cc7cc91, type: 3}
+      objectReference: {fileID: 2114110171291176855, guid: a248603e66c6144b9be244a5aed5b62a, type: 3}
     - target: {fileID: 373298000315299436, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912711973199980549, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: _verticalOffset
-      value: 1.71
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: 8174830561543935119, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

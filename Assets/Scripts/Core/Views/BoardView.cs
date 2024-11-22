@@ -38,6 +38,12 @@ namespace Core.Views
         [SerializeField]
         private SpriteRenderer _background;
         
+        [SerializeField]
+        private SpriteRenderer _outline;
+        
+        [SerializeField]
+        private float _visibleRectOffset = 0.5f;
+        
         private EmptyCellView[,] _gridCells;
         private TileView[,] _tileCells;
         private Vector2Int _hoveredCell = Vector2Int.zero;
@@ -60,9 +66,10 @@ namespace Core.Views
             CreateGrid();
             CreateCells();
             CreateHand();
+            FitBoardOutline();
             FitCamera().Forget();
         }
-
+        
         public void OnTileDrag(TileView tileView)
         {
             var cell = (Vector2Int)_grid.WorldToCell(tileView.transform.position);
@@ -188,8 +195,14 @@ namespace Core.Views
             _background.size = _camera.orthographicSize * 2 * new Vector2(_camera.aspect, 1);
             _background.transform.position = new Vector3(_camera.transform.position.x, _camera.transform.position.y, 0);
         }
+        
+        private void FitBoardOutline()
+        {
+            _outline.size = VisibleWorldRect.size;
+            _outline.transform.position = VisibleWorldRect.center;
+        }
 
-        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect).Expand(_grid.cellSize.x / 2);
+        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect).Expand(_visibleRectOffset);
 
         private Rect VisibleGridWorldRect
         {
