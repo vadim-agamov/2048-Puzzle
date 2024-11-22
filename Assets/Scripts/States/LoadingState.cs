@@ -57,8 +57,6 @@ namespace States
             Container.BindAndInject<IFlyItemsService>(new FlyItemsService());
             Container.BindAndInject<ISoundService>(new GameObject().AddComponent<SoundService>());
             
-            var localizationConfig = await Addressables.LoadAssetAsync<LocalizationProviderConfig>("LocalizationConfig");
-            localizationService.Register(localizationConfig);
 #if DEV
             RegisterCheats(localizationService, playerDataService);
 #endif
@@ -73,6 +71,9 @@ namespace States
             playerDataService.Commit();
             
             analyticsService.Start();
+            
+            var localizationConfig = await Addressables.LoadAssetAsync<LocalizationProviderConfig>("LocalizationConfig");
+            localizationService.Register(localizationConfig);
             
             await Fsm.Enter(new CoreState(), token);
             
