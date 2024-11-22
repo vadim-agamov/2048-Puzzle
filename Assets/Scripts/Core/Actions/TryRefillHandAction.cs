@@ -51,15 +51,17 @@ namespace Core.Actions
                     if(_boardModel.Hand.Tiles[i] == null)
                     {
                         result = true;
+                        var handTiles = _boardModel.Hand.Tiles.Where(m => m != null).Select(m => (int)m.Type).ToArray();
                         var maxTileOnBoard = _boardModel.Tiles
                             .Where((m, _, _) => m != null)
                             .Where(m => m.Type != TileType.None)
                             .Select(m => (int)m.Type)
+                            .Except(handTiles)
                             .Append((int)TileType.Tile1)
                             .Max();
 
                         var minTile = (int)TileType.Tile1;// Math.Max(1, maxTileOnBoard - 5);
-                        var maxTile = Math.Max(1, maxTileOnBoard - 2);
+                        var maxTile = Math.Max(1, maxTileOnBoard - 3);
                         var tile = (TileType)UnityEngine.Random.Range(minTile, maxTile + 1);
                         
                         _boardModel.Hand.SetTile(i, new TileModel(tile, i));

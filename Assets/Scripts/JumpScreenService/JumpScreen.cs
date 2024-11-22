@@ -47,9 +47,8 @@ namespace Services.JumpScreenService
 
         public void Report(float value)
         {
-            Debug.Log($"[{nameof(JumpScreen)}] progress: {value}");
             _progressText.gameObject.SetActive(true);
-            _progressText.text = $"Loading {(100 * value):0}%";
+            _progressText.text = $"{(100 * value):0}%";
         }
     }
 }

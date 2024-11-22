@@ -17,6 +17,7 @@ using Modules.UIService;
 using Services.GamePlayerDataService;
 using Services.JumpScreenService;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 #if UNITY_EDITOR
     using Modules.PlatformService.EditorPlatformService;
@@ -24,8 +25,6 @@ using UnityEngine;
     using Modules.PlatformService.FbPlatformService;
 #elif YANDEX
     using Modules.PlatformService.YandexPlatformService;
-#elif CRAZY
-    using Modules.PlatformService.CrazyGamesPlatformService;
 #elif DUMMY_WEBGL
     using Modules.PlatformService.DummyPlatformService;
 #endif
@@ -58,6 +57,8 @@ namespace States
             Container.BindAndInject<IFlyItemsService>(new FlyItemsService());
             Container.BindAndInject<ISoundService>(new GameObject().AddComponent<SoundService>());
             
+            var localizationConfig = await Addressables.LoadAssetAsync<LocalizationProviderConfig>("LocalizationConfig");
+            localizationService.Register(localizationConfig);
 #if DEV
             RegisterCheats(localizationService, playerDataService);
 #endif
@@ -99,7 +100,7 @@ namespace States
             Container.BindAndInject(cheatService);
             cheatService.RegisterCheatProvider(new GeneralCheatsProvider(cheatService, playerDataService));
             cheatService.RegisterCheatProvider(new AdCheatsProvider(cheatService));
-            // cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService, localizationService));
+            cheatService.RegisterCheatProvider(new LocalizationCheatsProvider(cheatService, localizationService));
         }  
 #endif
         

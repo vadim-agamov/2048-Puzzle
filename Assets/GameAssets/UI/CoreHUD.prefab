@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 887855995553499197}
   - component: {fileID: 2835013223726024702}
   - component: {fileID: 4258012467646477240}
+  - component: {fileID: 3553032849898924208}
   m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
@@ -305,6 +306,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3553032849898924208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962025696587246462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e598b723c4202aa49451052d79d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 2835013223726024702}
+  _key: best
 --- !u!1 &2261912178733621057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1348,7 @@ GameObject:
   - component: {fileID: 1431796135124426418}
   - component: {fileID: 4146034605073946861}
   - component: {fileID: 4641515560707149390}
+  - component: {fileID: 7566483486131035512}
   m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
@@ -1478,3 +1494,17 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &7566483486131035512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703048155081682179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e598b723c4202aa49451052d79d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 4146034605073946861}
+  _key: score
