@@ -142,8 +142,8 @@ namespace Core.Views
                     {
                         continue;
                     }
-                    
-                    CreateTile(model);
+
+                    CreateTile(model).Idle().Forget();
                 }
             }
         }
@@ -192,7 +192,9 @@ namespace Core.Views
         
         private void FitBackToCamera()
         {
-            _background.size = _camera.orthographicSize * 2 * new Vector2(_camera.aspect, 1);
+            // _background.size = _camera.orthographicSize * 2 * new Vector2(_camera.aspect, 1);
+            var backgroundScale = _camera.orthographicSize * 2 / _background.size.y;
+            _background.transform.localScale = new Vector3(backgroundScale, backgroundScale, 1);
             _background.transform.position = new Vector3(_camera.transform.position.x, _camera.transform.position.y, 0);
         }
         

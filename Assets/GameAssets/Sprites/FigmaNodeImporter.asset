@@ -15,5 +15,7 @@ MonoBehaviour:
   _figmaToken: {fileID: 11400000, guid: 847ce52bafbfc4113b5cc9ab7f4fa203, type: 2}
   _figmaProjectId: OVByFGcnGyJAUMy29wI8x9
   _figmaNodeConfig:
-  - _unityExportPath: Assets/GameAssets/Sprites
+  - _unityExportPath: Assets/GameAssets/Sprites/Tiles
     _nodeToken: 132-343
+  - _unityExportPath: Assets/GameAssets/Sprites/Background
+    _nodeToken: 303-771

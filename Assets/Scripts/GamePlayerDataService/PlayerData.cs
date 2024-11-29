@@ -1,4 +1,5 @@
 using System;
+using Core.Models;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -29,6 +30,9 @@ namespace Services.GamePlayerDataService
         
         [JsonProperty]
         public int GamesPlayed;
+        
+        [JsonProperty]
+        public BoardModel BoardModel;
         
         public PlayerData()
         {

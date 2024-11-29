@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: afefc9c0d479042788f2973d9f77a879
+guid: 96b0ccfc3700144bfa96f0f926753e80
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5014770225560225528
-    second: TileBack_0
+      213: 7465855713940309216
+    second: Ground1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TileBack_0
+      name: Ground1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 400
-        height: 400
+        width: 927
+        height: 239
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 809f64b9c05f76ab0800000000000000
-      internalID: -5014770225560225528
+      spriteID: 0e48bbd473c0c9760800000000000000
+      internalID: 7465855713940309216
       vertices: []
       indices: 
       edges: []
@@ -152,7 +152,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TileBack_0: -5014770225560225528
+      Ground1_0: 7465855713940309216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

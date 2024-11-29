@@ -135,7 +135,7 @@ namespace Core.Views
 
         private Vector3 GetCellPosition(int index)
         {
-            var totalCells = SlotForAdTileEnabled ? Model.Size : Model.Size - 1; // 1 for ad tile
+            var totalCells = SlotForAdTileEnabled ? Model.Size + 1 : Model.Size ; // 1 for ad tile
             var handWidth = totalCells * _grid.cellSize.x;
             var cellPosition = Mathf.Lerp(-handWidth / 2, handWidth / 2, index / (float)totalCells);
             return new Vector3(cellPosition, 0, 0);

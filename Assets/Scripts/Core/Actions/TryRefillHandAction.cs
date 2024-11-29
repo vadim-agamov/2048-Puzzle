@@ -39,7 +39,7 @@ namespace Core.Actions
 
             public override bool Do()
             {
-                if(_boardModel.Hand.Tiles.All(m => m != null))
+                if(_boardModel.Hand.Tiles.Any(m => m != null))
                 {
                     return false;
                 }
@@ -61,8 +61,11 @@ namespace Core.Actions
                             .Max();
 
                         var minTile = (int)TileType.Tile1;// Math.Max(1, maxTileOnBoard - 5);
-                        var maxTile = Math.Max(1, maxTileOnBoard - 3);
-                        var tile = (TileType)UnityEngine.Random.Range(minTile, maxTile + 1);
+                        var maxTile = Math.Max(minTile, maxTileOnBoard - 3);
+                        var options = Enumerable.Range(minTile, maxTileOnBoard - minTile + 1).Cast<TileType>().ToArray();
+                        var weights = options.Select((_,index) => 1 / (float)(index * index + 1)).ToArray();
+                        
+                        var tile = options.Random(weights);
                         
                         _boardModel.Hand.SetTile(i, new TileModel(tile, i));
                         

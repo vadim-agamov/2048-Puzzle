@@ -31,7 +31,7 @@ namespace Core.Controller
     public class BoardController : IInitializable, ICheatsProvider
     {
         private readonly BoardView _boardView;
-        private BoardModel _boardModel;
+        private BoardModel BoardModel => PlayerDataService.PlayerData.BoardModel;
         private bool _addIsInProgress;
         private int _slotsAdded = 0;
         private IAnalyticsService AnalyticsService { get; set; }
@@ -40,7 +40,7 @@ namespace Core.Controller
         private UIService UiService { get; set; }
         private IPlatformService PlatformService { get; set; }
         private ISoundService SoundService { get; set; }
-        public int Score => _boardModel?.Score ?? 0;
+        public int Score => BoardModel.Score;
         public bool IsInitialized { get; private set; }
 
 
@@ -59,12 +59,7 @@ namespace Core.Controller
             UiService = uiService;
             PlatformService = platformService;
             SoundService = soundService;
-        }
-
-        public BoardController(BoardView boardView) => _boardView = boardView;
-
-        public UniTask Initialize(CancellationToken cancellationToken)
-        {
+            
             var size = PlayerDataService.PlayerData.MaxScore switch
             {
                 < 10000 => new Vector2Int(4, 4),
@@ -74,10 +69,15 @@ namespace Core.Controller
                 < 45000 => new Vector2Int(6, 6),
                 _ => new Vector2Int(6, 7)
             };
-            
-            _boardModel = new BoardModel(size);
-            _boardModel.Hand.SetTile(0, new TileModel(TileType.Tile1, 0));
-            _boardView.Initialize(this, _boardModel, UiService);
+            PlayerDataService.PlayerData.BoardModel ??= new BoardModel(size);
+        }
+
+        public BoardController(BoardView boardView) => _boardView = boardView;
+
+        public UniTask Initialize(CancellationToken cancellationToken)
+        {
+            BoardModel.Hand.SetTile(0, new TileModel(TileType.Tile1, 0));
+            _boardView.Initialize(this, BoardModel, UiService);
             
             _cheatLabel = new CheatLabel(() => $"Score: {Score}");
             _cheatEndGameButton = new CheatButton("EndGame", () => EndGame().Forget());
@@ -93,12 +93,12 @@ namespace Core.Controller
 
             async UniTask Do()
             {
-                var success = await new PutBlockOnBoardAction(_boardModel, _boardView, position, tileView).Do();
+                var success = await new PutBlockOnBoardAction(BoardModel, _boardView, position, tileView).Do();
                 if (success)
                 {
                     await new ParallelAction()
-                        .Add(new TryRefillHandAction(_boardModel, _boardView))
-                        .Add(new TryBestMergeTileAction(_boardModel, _boardView, tileView.Model, FlyItemsService))
+                        .Add(new TryRefillHandAction(BoardModel, _boardView))
+                        .Add(new TryBestMergeTileAction(BoardModel, _boardView, tileView.Model, FlyItemsService))
                         .Do();
                     
                     CheckEndGame();
@@ -107,6 +107,8 @@ namespace Core.Controller
                 {
                     tileView.RestoreHandPosition();
                 }
+                
+                PlayerDataService.Commit();
             }
         }
 
@@ -127,9 +129,10 @@ namespace Core.Controller
                 if (result)
                 {
                     _slotsAdded++;
-                    _boardModel.Hand.IncreaseSize();
+                    BoardModel.Hand.IncreaseSize();
                     _boardView.ReloadHand();
-                    await new TryRefillHandAction(_boardModel, _boardView).Do();
+                    await new TryRefillHandAction(BoardModel, _boardView).Do();
+                    PlayerDataService.Commit();
                 }
             }
             finally
@@ -140,7 +143,7 @@ namespace Core.Controller
 
         private void CheckEndGame()
         {
-            if (_boardModel.Tiles.Where(m => m == null).Any())
+            if (BoardModel.Tiles.Where(m => m == null).Any())
             {
                 return;
             }
@@ -152,12 +155,13 @@ namespace Core.Controller
         {
             PlayerDataService.PlayerData.MaxScore = Math.Max(Score, PlayerDataService.PlayerData.MaxScore);
             PlayerDataService.PlayerData.GamesPlayed++;
+            PlayerDataService.PlayerData.BoardModel = null;
             PlayerDataService.Commit();
             AnalyticsService.TrackEvent("end_game", new Dictionary<string, object>
             {
                 { "score", Score },
                 { "slots_added", _slotsAdded },
-                { "board_size", $"{_boardModel.Size.x}x{_boardModel.Size.y}" },
+                { "board_size", $"{BoardModel.Size.x}x{BoardModel.Size.y}" },
                 { "games_played", PlayerDataService.PlayerData.GamesPlayed }
             });
             
