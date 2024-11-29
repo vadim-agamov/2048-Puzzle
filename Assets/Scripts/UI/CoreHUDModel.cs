@@ -1,4 +1,5 @@
 using Core.Controller;
+using Cysharp.Threading.Tasks;
 using Modules.DiContainer;
 using Modules.SoundService;
 using Modules.UIService;
@@ -50,5 +51,7 @@ namespace UI
         }
 
         public CoreHUDModel() => Container.Inject(this);
+
+        public void RestartGame() => Controller.Restart().Forget();
     }
 }

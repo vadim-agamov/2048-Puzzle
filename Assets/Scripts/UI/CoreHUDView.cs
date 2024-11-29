@@ -45,5 +45,7 @@ namespace UI
                 .Append(_scoreText.transform.DOScale(1f, 0.1f))
                 .Play();
         }
+
+        public void RestartGame() => Model.RestartGame();
     }
 }

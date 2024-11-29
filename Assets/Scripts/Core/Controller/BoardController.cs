@@ -40,7 +40,7 @@ namespace Core.Controller
         private UIService UiService { get; set; }
         private IPlatformService PlatformService { get; set; }
         private ISoundService SoundService { get; set; }
-        public int Score => BoardModel.Score;
+        public int Score => BoardModel?.Score ?? 0;
         public bool IsInitialized { get; private set; }
 
 
@@ -155,7 +155,6 @@ namespace Core.Controller
         {
             PlayerDataService.PlayerData.MaxScore = Math.Max(Score, PlayerDataService.PlayerData.MaxScore);
             PlayerDataService.PlayerData.GamesPlayed++;
-            PlayerDataService.PlayerData.BoardModel = null;
             PlayerDataService.Commit();
             AnalyticsService.TrackEvent("end_game", new Dictionary<string, object>
             {
@@ -166,9 +165,28 @@ namespace Core.Controller
             });
             
             var endGameModel = new EndGameModel(Score, PlayerDataService.PlayerData.MaxScore);
+            PlayerDataService.PlayerData.BoardModel = null;
+            
             await endGameModel.OpenAndShow("EndGameWindow", Bootstrapper.SessionToken);
             await Event<UiHideEvent>.Wait(Bootstrapper.SessionToken);
             using var mute = Mute();
+            await PlatformService.ShowInterstitial(Bootstrapper.SessionToken);
+            await Fsm.Enter(new CoreState(), Bootstrapper.SessionToken);
+        }
+
+        public async UniTask Restart()
+        {
+            PlayerDataService.PlayerData.GamesPlayed++;
+            PlayerDataService.ForceCommit();
+            AnalyticsService.TrackEvent("restart_game", new Dictionary<string, object>
+            {
+                { "score", Score },
+                { "slots_added", _slotsAdded },
+                { "board_size", $"{BoardModel.Size.x}x{BoardModel.Size.y}" },
+                { "games_played", PlayerDataService.PlayerData.GamesPlayed }
+            });
+
+            PlayerDataService.PlayerData.BoardModel = null;
             await PlatformService.ShowInterstitial(Bootstrapper.SessionToken);
             await Fsm.Enter(new CoreState(), Bootstrapper.SessionToken);
         }

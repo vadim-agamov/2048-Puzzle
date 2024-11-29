@@ -112,7 +112,7 @@ namespace Core.Views
         private void CreateHand()
         {
             _handView.Initialize(Model.Hand, this, Controller);
-            var rect = VisibleGridWorldRect;
+            var rect = GridWorldRect;
             _handView.transform.position = new Vector3(rect.center.x, rect.yMin - _grid.cellSize.y);
         }
 
@@ -186,7 +186,7 @@ namespace Core.Views
                 _boardUiRect.OnRectTransformDimensionsChanged += () => FitCamera().Forget();
             }
 
-            await _camera.FitOrthographic(VisibleWorldRect, _boardUiRect.RectTransform);
+            await _camera.FitOrthographic(WorldRect, _boardUiRect.RectTransform);
             FitBackToCamera();
         }
         
@@ -200,13 +200,13 @@ namespace Core.Views
         
         private void FitBoardOutline()
         {
-            _outline.size = VisibleWorldRect.size;
-            _outline.transform.position = VisibleWorldRect.center;
+            _outline.size = WorldRect.size;
+            _outline.transform.position = WorldRect.center;
         }
 
-        private Rect VisibleWorldRect => VisibleGridWorldRect.Union(_handView.VisibleWorldRect).Expand(_visibleRectOffset);
+        private Rect WorldRect => GridWorldRect.Union(_handView.WorldRect).Expand(_visibleRectOffset);
 
-        private Rect VisibleGridWorldRect
+        private Rect GridWorldRect
         {
             get
             {
@@ -226,7 +226,7 @@ namespace Core.Views
                 return;
             }
 
-            var rect = VisibleWorldRect;
+            var rect = WorldRect;
             Gizmos.DrawLineList(new[]
             {
                 new Vector3(rect.x, rect.y), new Vector3(rect.x + rect.width, rect.y),

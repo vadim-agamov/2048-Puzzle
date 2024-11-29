@@ -75,6 +75,11 @@ namespace States
             var localizationConfig = await Addressables.LoadAssetAsync<LocalizationProviderConfig>("LocalizationConfig");
             localizationService.Register(localizationConfig);
             
+            if (!newInstall)
+            {
+                await platformService.ShowInterstitial(Bootstrapper.SessionToken);
+            }
+            
             await Fsm.Enter(new CoreState(), token);
             
             await jumpScreenService.Hide(token);

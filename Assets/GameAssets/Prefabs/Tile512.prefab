@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: _verticalOffset
       value: 1.74
       objectReference: {fileID: 0}
+    - target: {fileID: 8174830561543935119, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.101960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174830561543935119, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.27450982
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174830561543935119, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.49411765
+      objectReference: {fileID: 0}
     - target: {fileID: 8298473710634750534, guid: 1f7a4b4dd8fcc402eafadde80d45c967, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.12

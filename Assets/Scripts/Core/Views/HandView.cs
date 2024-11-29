@@ -56,8 +56,9 @@ namespace Core.Views
                 yield return tile;
             }   
         }
+        
 
-        public Rect VisibleWorldRect
+        public Rect WorldRect
         {
             get
             {
@@ -78,8 +79,8 @@ namespace Core.Views
             Model = model;
             Controller = boardController;
             CreateCells();
-            CreateTiles();
             CreatePlayAdTileView();
+            CreateTiles();
         }
         
         public void Release()
@@ -94,6 +95,17 @@ namespace Core.Views
             _tileViews = null;
         }
 
+        private void CreateCells()
+        {
+            for (var i = 0; i < Model.Size; i++)
+            {
+                var cell =  BoardView.TilePool.Get(_emptyCellPrefab);
+                cell.transform.SetParent(_gridContainer);
+                cell.transform.localPosition = GetCellPosition(i);
+                _emptyCells.Add(cell);
+            }
+        }
+
         private void CreatePlayAdTileView()
         {
             if (!SlotForAdTileEnabled)
@@ -102,7 +114,7 @@ namespace Core.Views
             }
             
             var playAdTileView = BoardView.TilePool.Get(_playAdTilePrefab);
-            playAdTileView.transform.SetParent(_tilesContainer);
+            playAdTileView.transform.SetParent(_gridContainer);
             playAdTileView.transform.localPosition = GetCellPosition(Model.Size);
             playAdTileView.OnClick += () => Controller.AddSlotToHand().Forget();
             _playAdTileView = playAdTileView;
@@ -122,22 +134,11 @@ namespace Core.Views
             }
         }
 
-        private void CreateCells()
-        {
-            for (var i = 0; i < Model.Size; i++)
-            {
-                var cell =  BoardView.TilePool.Get(_emptyCellPrefab);
-                cell.transform.SetParent(_gridContainer);
-                cell.transform.localPosition = GetCellPosition(i);
-                _emptyCells.Add(cell);
-            }
-        }
-
         private Vector3 GetCellPosition(int index)
         {
             var totalCells = SlotForAdTileEnabled ? Model.Size + 1 : Model.Size ; // 1 for ad tile
             var handWidth = totalCells * _grid.cellSize.x;
-            var cellPosition = Mathf.Lerp(-handWidth / 2, handWidth / 2, index / (float)totalCells);
+            var cellPosition = -handWidth / 2 + index * _grid.cellSize.x + _grid.cellSize.x / 2;
             return new Vector3(cellPosition, 0, 0);
         }
 
@@ -156,6 +157,12 @@ namespace Core.Views
             tile.IsDraggable = true;
             _tileViews[i] = tile;
             return tile;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(WorldRect.center, WorldRect.size);
         }
     }
 }
