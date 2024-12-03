@@ -9,8 +9,6 @@ using Core.Views;
 using Cysharp.Threading.Tasks;
 using Modules.Actions;
 using Modules.AnalyticsService;
-using Modules.CheatService;
-using Modules.CheatService.Controls;
 using Modules.DiContainer;
 using Modules.Events;
 using Modules.Extensions;
@@ -26,9 +24,17 @@ using Services.GamePlayerDataService;
 using UI;
 using UnityEngine;
 
+#if DEV
+using Modules.CheatService;
+using Modules.CheatService.Controls;
+#endif
+
 namespace Core.Controller
 {
-    public class BoardController : IInitializable, ICheatsProvider
+    public class BoardController : IInitializable
+#if DEV
+       , ICheatsProvider
+#endif
     {
         private readonly BoardView _boardView;
         private BoardModel BoardModel => PlayerDataService.PlayerData.BoardModel;
@@ -79,8 +85,10 @@ namespace Core.Controller
             BoardModel.Hand.SetTile(0, new TileModel(TileType.Tile1, 0));
             _boardView.Initialize(this, BoardModel, UiService);
             
+#if DEV
             _cheatLabel = new CheatLabel(() => $"Score: {Score}");
             _cheatEndGameButton = new CheatButton("EndGame", () => EndGame().Forget());
+#endif
             
             IsInitialized = true;
             return UniTask.CompletedTask;
@@ -207,7 +215,7 @@ namespace Core.Controller
             });
         }
 
-        #region Cheats
+#if DEV
 
         private CheatLabel _cheatLabel;
         private CheatButton _cheatEndGameButton;
@@ -219,6 +227,6 @@ namespace Core.Controller
         }
 
         string ICheatsProvider.Id => "Board";
-        #endregion
+#endif
     }
 }

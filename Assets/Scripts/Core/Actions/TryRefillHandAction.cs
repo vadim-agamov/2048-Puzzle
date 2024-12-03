@@ -60,7 +60,7 @@ namespace Core.Actions
                             .Max();
 
                         var minTile = (int)TileType.Tile1;
-                        var options = Enumerable.Range(minTile, maxTileOnBoard - minTile).Cast<TileType>().ToArray();
+                        var options = Enumerable.Range(minTile, 1 + maxTileOnBoard - minTile).Cast<TileType>().ToArray();
                         var weights = options.Select((_,index) => 1 / (float)(index * index + 1)).ToArray();
                         
                         var tile = options.Random(weights);
