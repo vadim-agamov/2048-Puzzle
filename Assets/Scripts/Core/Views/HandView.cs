@@ -62,6 +62,11 @@ namespace Core.Views
         {
             get
             {
+                if (_gridContainer.childCount == 0)
+                {
+                    return new Rect();
+                }
+                
                 var first = _gridContainer.GetChild(0).position;
                 var last = _gridContainer.GetChild(_gridContainer.childCount - 1).position;
                 var rect = new Rect

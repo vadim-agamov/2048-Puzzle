@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Cheats;
 using Core.State;
 using Cysharp.Threading.Tasks;
 using Modules.AnalyticsService;
-using Modules.CheatService;
 using Modules.DiContainer;
 using Modules.FlyItemsService;
 using Modules.Fsm;
@@ -18,6 +16,11 @@ using Services.GamePlayerDataService;
 using Services.JumpScreenService;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+
+#if DEV
+using Cheats;
+using Modules.CheatService;
+#endif
 
 #if UNITY_EDITOR
     using Modules.PlatformService.EditorPlatformService;

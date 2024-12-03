@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Models;
@@ -60,9 +59,8 @@ namespace Core.Actions
                             .Append((int)TileType.Tile1)
                             .Max();
 
-                        var minTile = (int)TileType.Tile1;// Math.Max(1, maxTileOnBoard - 5);
-                        var maxTile = Math.Max(minTile, maxTileOnBoard - 3);
-                        var options = Enumerable.Range(minTile, maxTileOnBoard - minTile + 1).Cast<TileType>().ToArray();
+                        var minTile = (int)TileType.Tile1;
+                        var options = Enumerable.Range(minTile, maxTileOnBoard - minTile).Cast<TileType>().ToArray();
                         var weights = options.Select((_,index) => 1 / (float)(index * index + 1)).ToArray();
                         
                         var tile = options.Random(weights);
