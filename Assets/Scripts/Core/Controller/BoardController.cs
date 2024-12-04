@@ -195,6 +195,7 @@ namespace Core.Controller
             });
 
             PlayerDataService.PlayerData.BoardModel = null;
+            using var mute = Mute();
             await PlatformService.ShowInterstitial(Bootstrapper.SessionToken);
             await Fsm.Enter(new CoreState(), Bootstrapper.SessionToken);
         }
