@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.Actions
 {
-    public class PutBlockOnBoardAction : ActionBase
+    public class PutBlockOnBoardAction : ActionBase<Void, TileModel>
     {
         public PutBlockOnBoardAction(BoardModel model, BoardView view, Vector2Int position, TileView tileView)
         {
@@ -17,7 +17,7 @@ namespace Core.Actions
             }
         }
 
-        private class PutBlockOnBoardLogicAction : LogicActionBase
+        private class PutBlockOnBoardLogicAction : LogicActionBase<Void, TileModel>
         {
             private readonly Vector2Int _position;
             private readonly BoardModel _model;
@@ -30,24 +30,25 @@ namespace Core.Actions
                 _tileModel = tile;
             }
 
-            public override bool Do()
+            public override Result<TileModel> Do(Result<Void> _)
             {
                 if (_position.x < 0 ||
                     _position.x >= _model.Size.x ||
                     _position.y < 0 ||
                     _position.y >= _model.Size.y)
                 {
-                    return false;
+                    return Result<TileModel>.Failed();
                 }
 
                 if (_model.Tiles[_position.x, _position.y] != null)
                 {
-                    return false;
+                    return Result<TileModel>.Failed();
                 }
 
-                _model.Tiles[_position.x, _position.y] = _tileModel.WithPosition(_position);
+                var placedModel = _tileModel.WithPosition(_position);
+                _model.Tiles[_position.x, _position.y] = placedModel;
                 _model.Hand.RemoveTile(_tileModel.HandPosition);
-                return true;
+                return Result<TileModel>.Succeed(placedModel);
             }
         }
 

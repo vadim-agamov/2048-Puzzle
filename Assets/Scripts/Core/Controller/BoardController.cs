@@ -23,6 +23,7 @@ using Modules.Utils;
 using Services.GamePlayerDataService;
 using UI;
 using UnityEngine;
+using Void = Modules.Actions.Void;
 
 #if DEV
 using Modules.CheatService;
@@ -33,7 +34,7 @@ namespace Core.Controller
 {
     public class BoardController : IInitializable
 #if DEV
-       , ICheatsProvider
+        , ICheatsProvider
 #endif
     {
         private readonly BoardView _boardView;
@@ -65,7 +66,7 @@ namespace Core.Controller
             UiService = uiService;
             PlatformService = platformService;
             SoundService = soundService;
-            
+
             var size = PlayerDataService.PlayerData.MaxScore switch
             {
                 < 10000 => new Vector2Int(4, 4),
@@ -84,30 +85,43 @@ namespace Core.Controller
         {
             BoardModel.Hand.SetTile(0, new TileModel(TileType.Tile1, 0));
             _boardView.Initialize(this, BoardModel, UiService);
-            
+
 #if DEV
             _cheatLabel = new CheatLabel(() => $"Score: {Score}");
             _cheatEndGameButton = new CheatButton("EndGame", () => EndGame().Forget());
 #endif
-            
+
             IsInitialized = true;
+
+            AnalyticsService.TrackEvent("begin_game", new Dictionary<string, object>
+            {
+                { "board_size", $"{BoardModel.Size.x}x{BoardModel.Size.y}" },
+                { "games_played", PlayerDataService.PlayerData.GamesPlayed }
+            });
+
             return UniTask.CompletedTask;
         }
 
-        
+
         public void PutTileOnBoard(Vector2Int position, TileView tileView)
         {
             Do().Forget();
 
             async UniTask Do()
             {
-                var success = await new PutBlockOnBoardAction(BoardModel, _boardView, position, tileView).Do();
-                if (success)
+                var result = await new PutBlockOnBoardAction(BoardModel, _boardView, position, tileView).Do(Result<Void>.Succeed(default));
+
+                if (result.Success)
                 {
-                    await new ParallelAction()
-                        .Add(new TryRefillHandAction(BoardModel, _boardView))
-                        .Add(new TryBestMergeTileAction(BoardModel, _boardView, tileView.Model, FlyItemsService))
-                        .Do();
+                    var action = new ParallelAction<TileModel>()
+                        .Add(
+                            SequenceAction
+                                .Start(new TryBestMergeTileAction(BoardModel, _boardView, FlyItemsService).SuppressResult())
+                                .Append(new SpawnTileOnBoardAction(BoardModel, _boardView))
+                                .Append(new TryBestMergeTileAction(BoardModel, _boardView, FlyItemsService)))
+                        .Add(new TryRefillHandAction(BoardModel, _boardView));
+                    
+                    await action.Do(result);
                     
                     CheckEndGame();
                 }
@@ -115,7 +129,7 @@ namespace Core.Controller
                 {
                     tileView.RestoreHandPosition();
                 }
-                
+
                 PlayerDataService.Commit();
             }
         }
@@ -127,10 +141,10 @@ namespace Core.Controller
                 Debug.LogWarning("Add slot is in progress");
                 return;
             }
-            
+
             _addIsInProgress = true;
             using var mute = Mute();
-            
+
             try
             {
                 var result = await PlatformService.ShowRewardedVideo(Bootstrapper.SessionToken);
@@ -139,7 +153,7 @@ namespace Core.Controller
                     _slotsAdded++;
                     BoardModel.Hand.IncreaseSize();
                     _boardView.ReloadHand();
-                    await new TryRefillHandAction(BoardModel, _boardView).Do();
+                    await new TryRefillHandAction(BoardModel, _boardView).Do(Result<Void>.Succeed(default));
                     PlayerDataService.Commit();
                 }
             }
@@ -171,10 +185,10 @@ namespace Core.Controller
                 { "board_size", $"{BoardModel.Size.x}x{BoardModel.Size.y}" },
                 { "games_played", PlayerDataService.PlayerData.GamesPlayed }
             });
-            
+
             var endGameModel = new EndGameModel(Score, PlayerDataService.PlayerData.MaxScore);
             PlayerDataService.PlayerData.BoardModel = null;
-            
+
             await endGameModel.OpenAndShow("EndGameWindow", Bootstrapper.SessionToken);
             await Event<UiHideEvent>.Wait(Bootstrapper.SessionToken);
             using var mute = Mute();
@@ -206,7 +220,7 @@ namespace Core.Controller
             {
                 SoundService.Mute();
             }
-            
+
             return new Disposable(() =>
             {
                 if (PlayerDataService.PlayerData.MusicEnabled)
@@ -220,7 +234,7 @@ namespace Core.Controller
 
         private CheatLabel _cheatLabel;
         private CheatButton _cheatEndGameButton;
-        
+
         void ICheatsProvider.OnGUI()
         {
             _cheatLabel.OnGUI();

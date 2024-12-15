@@ -8,7 +8,7 @@ using Modules.Extensions;
 
 namespace Core.Actions
 {
-    public class TryRefillHandAction : ActionBase
+    public class TryRefillHandAction : ActionBase<Void,Void>
     {
         public TryRefillHandAction(BoardModel boardModel, BoardView boardView)
         {
@@ -25,7 +25,7 @@ namespace Core.Actions
             public int[] RefilledTiles;
         }
 
-        private class Logic : LogicActionBase
+        private class Logic : LogicActionBase<Void,Void>
         {
             private readonly BoardModel _boardModel;
             private readonly Context _context;
@@ -36,11 +36,11 @@ namespace Core.Actions
                 _context = context;
             }
 
-            public override bool Do()
+            public override Result<Void> Do(Result<Void> input)
             {
                 if(_boardModel.Hand.Tiles.Any(m => m != null))
                 {
-                    return false;
+                    return Result<Void>.Failed();
                 }
                 
                 var result = false;
@@ -56,6 +56,7 @@ namespace Core.Actions
                             .Where(m => m.Type != TileType.None)
                             .Select(m => (int)m.Type)
                             .Except(handTiles)
+                            .Where(t => t != (int)TileType.MaxTile)
                             .Append((int)TileType.Tile1)
                             .Max();
 
@@ -72,7 +73,7 @@ namespace Core.Actions
                 }
                 
                 _context.RefilledTiles = refilledTiles.ToArray();
-                return result;
+                return result ? Result<Void>.Succeed(default) : Result<Void>.Failed();
             }
         }
 
